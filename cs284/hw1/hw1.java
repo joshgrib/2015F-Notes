@@ -43,3 +43,23 @@ public class hw1 {
         double resultError = seriesError.P(3);
     }
 }
+
+//TERMINAL OUTPUT
+//---
+//PolySeries created with coefficient:1.0 and degree:3
+//0.0  +  1.0*2.0^0=1.0
+//1.0  +  1.0*2.0^1=3.0
+//3.0  +  1.0*2.0^2=7.0
+//7.0  +  1.0*2.0^3=15.0
+//Result:15.0
+//PolySeries created with coefficient:-2.1 and degree:4
+//0.0  +  -2.1*4.0^0=-2.1
+//-2.1  +  -2.1*4.0^1=-10.5
+//-10.5  +  -2.1*4.0^2=-44.1
+//-44.1  +  -2.1*4.0^3=-178.5
+//-178.5  +  -2.1*4.0^4=-716.1
+//Result:-716.1
+//Addition:
+//-716.1+15.0=-701.1
+//---
+//Sorry, degree cannot be negative, exiting...
