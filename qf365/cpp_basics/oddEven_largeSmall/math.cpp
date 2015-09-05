@@ -16,7 +16,7 @@ int main()
     }
     else{
         cout << "Odd" << endl;
-    };
+    }
     while(1){
         cout << "Enter numbers, -1 to stop" << endl;
         cin >> inputNum;
