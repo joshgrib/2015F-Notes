@@ -1,0 +1,128 @@
+#lang racket
+
+(define (atom? x)
+  (and (not (null? x))
+       (not (pair? x))))
+
+1
+;int
+
+2.0
+;float
+
+"hi"
+;string
+
+#t
+;true
+
+#f
+;false
+
+(+ 1 1)
+;addition
+
+(and #t #f)
+;boolean logic
+
+(equal? 2 2)
+;equality
+
+(> 2 1)
+;comparator
+
+(equal? (> 2 1) #t)
+;check if (2 > 1) is equal to true
+
+(define two 1)  ; deliberately confusing
+;define "two" as 1
+
+(define three (+ two 1))
+;define "three" as "two"(1) plus 1
+
+two
+;returns 1, the def of "two"
+
+three
+;returns 2, the def of "two" + 1
+
+;four
+;ERROR - not defined
+
+;(+ #t f)  ; which shows Scheme has strong, dynamic typing like JS and python
+;ERROR - f is not defined
+
+(and 0 1)
+;returns 1, the second number
+;not completely sure about this one
+
+number?
+;checks if something is a number
+
+(number? 2)
+;true, 2 is a number
+
+(number? "two")
+;f, its a string
+
+(number? #t)
+;f, its a bool
+
+(boolean? #t)
+;t, its a bool
+
+(boolean? 2)
+;f, its an int
+
+(string? "two")
+;t, its a str
+
+(atom? 'two)
+;t, one object
+
+(atom? 2)
+;t, one object
+
+(atom? "two")
+;t, one object
+
+(atom? atom?)
+;t, on object
+
+(procedure? +)
+;t, addition is a procedure
+
+(procedure? 2)
+;f, just a lowly int
+
+(procedure? "two")
+;f, just a strin
+
+; be careful to type the next one exactly, including the leading quote mark
+
+'(html (body (h1 "my home page") (a (href "http://www.stevens.edu") "click here")))
+;I think the leading apostrophe just makes it a string?
+
+(define (impl p q) (or (not p) q))
+;defines implies
+
+(impl #f #f)
+;true, f --> f
+
+(impl #f #t)
+;t, f-->t
+
+(impl #t #f)
+;f, t-/->f
+
+(impl #t #t)
+;t, t-->t
+
+(define funny '(define funny #f))
+;not sure about this one
+
+funny
+;'(define funny #f)
+
+;fancy
+;not defined

@@ -1,0 +1,17 @@
+⇒  implies; if... then
+⇔  iff; means the same as
+¬  negation; not
+∧  and
+∨  or
+⊕  xor
+⊤  tautology
+⊥  contradiction
+∀  for all
+∃  there exists
+∃!  there exists exactly 1
+:=  definition
+⊢  provable
+⊨  entails
+∴  therefore
+⊼  nand
+⊽  nor

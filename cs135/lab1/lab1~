@@ -1,0 +1,105 @@
+#lang racket
+
+(define (atom? x)
+  (and (not (null? x))
+       (not (pair? x))))
+
+1
+;int
+
+2.0
+;float
+
+"hi"
+;string
+
+#t
+;true
+
+#f
+;false
+
+(+ 1 1)
+;addition
+
+(and #t #f)
+;boolean logic
+
+(equal? 2 2)
+;equality
+
+(> 2 1)
+;comparator
+
+(equal? (> 2 1) #t)
+;check if (2 > 1) is equal to true
+
+(define two 1)  ; deliberately confusing
+;define "two" as 1
+
+(define three (+ two 1))
+;define "three" as "two"(1) plus 1
+
+two
+;returns 1, the def of "two"
+
+three
+;returns 2, the def of "two" + 1
+
+;four
+;ERROR - not defined
+
+;(+ #t f)  ; which shows Scheme has strong, dynamic typing like JS and python
+;ERROR - f is not defined
+
+(and 0 1)
+
+
+number?
+
+(number? 2)
+
+(number? "two")
+
+(number? #t)
+
+(boolean? #t)
+
+(boolean? 2)
+
+(string? "two")
+
+(atom? 'two)
+
+(atom? 2)
+
+(atom? "two")
+
+(atom? atom?)
+
+(procedure? +)
+
+(procedure? 2)
+
+(procedure? "two")
+
+; be careful to type the next one exactly, including the leading quote mark
+
+'(html (body (h1 "my home page") (a (href "http://www.stevens.edu") "click here")))
+
+(define (impl p q) (or (not p) q))
+
+(impl #f #f)
+
+(impl #f #t)
+
+(impl #t #f)
+
+(impl #t #t)
+
+(define funny '(define funny #f))
+
+funny
+
+;fancy
+;not defined
