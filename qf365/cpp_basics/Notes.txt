@@ -1,0 +1,7 @@
+Notes:
+
+Classes
+    Access specifiers - control who can change things
+        "public"
+    Return type:
+        Specifies what a function should return - int, void, double, bool, etc

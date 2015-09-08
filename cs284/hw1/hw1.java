@@ -1,5 +1,4 @@
-public class hw1 {
-
+public class hw1{
     public static class PolySeries{
         public int degree;
         public double coef;
