@@ -48,10 +48,6 @@ public: //access specifier
             cout << "Option type not recognized" << endl;
         }
     }
-    void openBook(string courseName) const //const means it doesn't modify the class
-    {
-        cout << "Welcome to the grade book for: " << courseName << "!" << endl;
-    }
 };
 
 int main()
