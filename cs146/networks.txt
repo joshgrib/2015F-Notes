@@ -1,0 +1,33 @@
+What is a network?
+    Connecting computers to share information
+        A physical connection via wires, cables, wireless media, etc
+        A logical connection through transport of information across the physical media
+    Several rules:
+        There must be a sender and reciever
+        There must be a payload (Why send an empty packet?)
+        Machines must use the same communicaions protocol
+        Data must be delivered without corruption
+        Something has to check that data is uncorrupted and return an error if it is
+        Something has to know origin and destination of the info
+    Why build a network?
+        Faster communications
+        Encourages standard policies and procedures
+        Backup/recovery support
+        Easy to store copies of dataShared resources lower costs
+    What is a hub?
+        Anything coming in is sent out on every port
+        Everything is broadcasted everywhere
+    What is a switch?
+        Does what a hub does, but learns where addresses are to be more efficient - then it only sends to the correct address
+    What is a router?
+        Smart and complicated
+        Two addresses - one for LAN(Local Area Network), one for WAN(wide area network)
+    What else can a router do?
+        DHCP(Dynamic Host Configuration Protocol - assigns dynamic IP addresses
+        NAT(Network Address Translation) - translates local IP address of packets to internet IP adress and vice-versa
+    What is a bridge?
+        A network device that connects multiple network segments
+        In the OSI model bridging acts in the first two layers
+    What is a protocol?
+        Agreement on how to communicate
+        Common internet protocols: TCP/IP, HHTP, FTP, SMTP, POP, etc
