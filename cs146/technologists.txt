@@ -1,0 +1,20 @@
+              Blaise Pascal - Pascaline
+            Joseph Jacquard - loom
+            Charles Babbage - analytical engine
+               George Boole - boolean logic
+               Howard Aiken - IBM Mark 1 computer
+           John von Neumann - quantum theory
+         Johannes Gutenberg - printing press
+               Joseph Henry - electromagnets
+               Samuel Morse - morse code
+Vinton Cerf and Robert Kahn - TCP/IP
+               Donald Knuth - TeX
+           Richard Stallman - father of GNU
+           Guido van Rossum - Python
+          Bjarne Stroustrup - C++
+            Brian Kernighan - Unix
+             Leslie Lamport - LaTeX
+                Alan Turing - the bombe
+               Grace Hopper - female programmer
+            Tim Berners-Lee - WWW/HTTP/URL
+               Brendan Eich - Javascript, Mozilla
