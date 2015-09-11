@@ -69,3 +69,53 @@ public class hw1{
     And now an error on purpose:
     Sorry, degree cannot be negative, exiting...
 */
+
+/*
+http://rosettacode.org/wiki/Horner's_rule_for_polynomial_evaluation
+
+a_i is an array s.t. a polynomial P(x) can be defined as:
+[12, 3, -4, 0, 1, 0, 4]
+P(x) = 4x^6 + x^4 - 4x^2 + 3x + 12
+
+The class should take in the array, the degree would be the length of the array, and the coefficients would be the awway values. Each term would be:
+    a[i] * x^i
+
+Two polynomials could be added(without giving x values first) by adding the array terms together. There would probably need to be something for arrays of different lengths.
+*/
+
+/* PYTHON - Horner's method of adding polynomials
+>>> def horner(coeffs, x):
+    acc = 0
+    for c in reversed(coeffs):
+        acc = acc * x + c
+    return acc
+
+>>> horner( (-19, 7, -4, 6), 3)
+128
+*/
+
+/* JAVA - Horner's method of adding polynomials
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
+public class Horner {
+    public static void main(String[] args){
+        List<Double> coeffs = new ArrayList<Double>();
+        coeffs.add(-19.0);
+        coeffs.add(7.0);
+        coeffs.add(-4.0);
+        coeffs.add(6.0);
+        System.out.println(polyEval(coeffs, 3));
+    }
+
+    public static double polyEval(List<Double> coefficients, double x) {
+        Collections.reverse(coefficients);
+        Double accumulator = coefficients.get(0);
+        for (int i = 1; i < coefficients.size(); i++) {
+            accumulator = (accumulator * x) + (Double) coefficients.get(i);
+        }
+        return accumulator;
+    }
+}
+*/

@@ -1,0 +1,7 @@
+Interfaces
+    A class that implements the interface provides code for the ADT
+    Interface is the stuff, implementation is how it works
+    The interface definition shows only headings for it's methods
+        Because only headings are shown, these methods are called abstract methods
+        Each abstract method *must* be defined in a class that implements the interface
+
