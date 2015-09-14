@@ -9,9 +9,9 @@ import java.util.Arrays;
 public class hw1{
     public static class PolySeries{
         //declare variables
-        public int degree;
-        public double[] coefs;
-        public String series_str;
+        private int degree;
+        private double[] coefs;
+        private String series_str;
 
         //constructor
         public PolySeries(double[] coefs_init){

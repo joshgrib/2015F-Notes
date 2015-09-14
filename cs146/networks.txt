@@ -31,3 +31,44 @@ What is a network?
     What is a protocol?
         Agreement on how to communicate
         Common internet protocols: TCP/IP, HHTP, FTP, SMTP, POP, etc
+**Look on canvas for OSI layer and routing info
+
+Internet Protocol (v4) - IPv4
+    Most common internet protocol
+    32-bit address for ~4 billion addresses
+        Some are reserved for private networks (~18 million) and multicast networks (~270 million)
+    Limitation of addresses prompted IPv6
+    In Feb 2011 - last addresses were assigned
+IP Basic Address Structure
+    2 portions:
+        Network ID - a certain number of bits starting from the left
+        Host ID - remaining bits on the right
+Decimal to binary
+    Divide by two, put remainder on the far right, read left->right as bottom->top
+    2|227
+    2|113   1
+    2|56    1
+    2|28    0
+    2|14    0
+    2|7     0
+    2|3     1
+    2|1     1
+    2|0     1
+    227 = 11100011
+Binary operations
+    Ex - Anding
+         10101
+        &01110
+        ======
+         00100
+    Binary --> Octal
+        Look at the binary as three digit groups and convert individually
+        011 100 011
+          3   4   3
+                343_8 (subscript to denote base)
+    Binary --> Hexadecimal
+        Groups of 4
+        1110 0011
+           E    3
+               E3_16
+        1, 2, 3, 4, 5, 6, 7, 8, 9, A, B, C, D, E, F
