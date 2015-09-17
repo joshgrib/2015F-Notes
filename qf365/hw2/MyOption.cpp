@@ -99,3 +99,19 @@ string MyOption::call() const{
         return "Out of the money";
     }
 }
+
+void MyOption::choose(){
+    cout << "Would you like to put(p) or call(c)?" << endl;
+    string choice;
+    cin >> choice;
+    if((choice == "p") || (choice == "P")){
+        cout << put() << endl;
+    }
+    else if((choice == "c") || (choice == "C")){
+        cout << call() << endl;
+    }
+    else{
+        cout << "Sorry choice not recognized. Try again." << endl;
+        choose();
+    }
+}

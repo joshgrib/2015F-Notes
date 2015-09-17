@@ -12,12 +12,11 @@ public:
     double getUnderlying() const;
     string put() const;
     string call() const;
-    string choose();
+    void choose();
 
 private:
     bool checkValue(double) const;
     void validate(double, double);
     double strike;
     double underlying;
-    string choice;
 };
