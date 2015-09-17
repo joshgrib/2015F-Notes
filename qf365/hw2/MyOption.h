@@ -10,13 +10,13 @@ public:
     double getStrike();
     void setUnderlying(double);
     double getUnderlying();
+    string put();
+    string call();
     string choose();
 
 private:
     bool checkValue(double);
     void validate(double, double);
-    string put();
-    string call();
     double strike;
     double underlying;
     string choice;

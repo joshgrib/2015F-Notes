@@ -77,42 +77,25 @@ double MyOption::getUnderlying(){
 //put logic
 string MyOption::put(){
     if(strike == underlying){
-        cout << "At the money" << endl;
+        return "At the money";
     }
     else if(strike < underlying){
-        cout << "In the money" << endl;
+        return "In the money";
     }
     else{
-        cout << "Out of the money" << endl;
+        return "Out of the money";
     }
 }
 
 //call logic
 string MyOption::call(){
     if(strike == underlying){
-        cout << "At the money" << endl;
+        return "At the money";
     }
     else if(strike > underlying){
-        cout << "In the money" << endl;
+        return "In the money";
     }
     else{
-        cout << "Out of the money" << endl;
-    }
-}
-
-//prompt choice of put or call
-string MyOption::choose(){
-    cout << "---\nStrike    :" << strike << "\nUnderlying:" << underlying << endl;
-    cout << "Do you want to put or call?(p/c)" << endl;
-    cin >> choice;
-    if(choice == "p"){
-        put();
-    }
-    else if(choice == "c"){
-        call();
-    }
-    else{
-        cout << "Choice not recognized. Please only enter \"p\" or \"c\". Try again..." << endl;
-        choose();
+        return "Out of the money";
     }
 }

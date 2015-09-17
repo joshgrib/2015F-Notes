@@ -9,14 +9,8 @@ int main()
     MyOption op1(1000, 2000);
     cout << "Strike is:" << op1.getStrike() << endl;
     op1.setStrike(2100);
-    op1.choose(); //prompts for p or c and cout's the result
+    cout << "Strike is now:" << op1.getStrike() << endl;
+    cout << "Put:  " << op1.put() << endl; //prompts for p or c and cout's the result
+    cout << "Call: " << op1.call() << endl;
     return 0;
 }
-
-/*
-Make choice a set variable too
-getter/setter method
-return where you're at in relation to the money at any point
-update "where" with every change!
-    New strike price? Maybe you're out of the money now!
-*/
