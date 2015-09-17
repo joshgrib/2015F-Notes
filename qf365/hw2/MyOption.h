@@ -2,8 +2,7 @@
 #include <string>
 using namespace std;
 
-class MyOption
-{
+class MyOption{
 public:
     explicit MyOption(double, double);
     void setStrike(double);

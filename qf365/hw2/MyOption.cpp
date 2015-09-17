@@ -3,18 +3,15 @@
 #define Included_MyOption_H
 using namespace std;
 
-//check that numbers are greater than 0
-bool MyOption::checkValue(double value) const
-{
+bool MyOption::checkValue(double value) const{
+    //check that numbers are greater than 0
     if(value>0){
         return true;
     }
     return false;
 }
-
-//ensure that strike and underlying are valid numbers
-void MyOption::validate(double strike_maybe, double underlying_maybe)
-{
+void MyOption::validate(double strike_maybe, double underlying_maybe){
+    //ensure that strike and underlying are valid numbers
     if(checkValue(strike_maybe) && checkValue(underlying_maybe>0)){
         strike = strike_maybe;
         underlying = underlying_maybe;
@@ -32,16 +29,13 @@ void MyOption::validate(double strike_maybe, double underlying_maybe)
         validate(new_strike, new_underlying);
     }
 }
-
-//constructor
-MyOption::MyOption(double strike_init, double underlying_init) //constructor
-{
+MyOption::MyOption(double strike_init, double underlying_init){
+    //constructor
     validate(strike_init, underlying_init);
     cout << "---\nNew option created!\nStrike:" << strike << "\nUnderlying:" << underlying << "\n---" << endl;
 }
-
-//strike setter
 void MyOption::setStrike(double new_strike){
+    //strike setter
     if(checkValue(new_strike)){
         strike = new_strike;
     }
@@ -51,14 +45,12 @@ void MyOption::setStrike(double new_strike){
         setStrike(new_strike);
     }
 }
-
-//strike getter
 double MyOption::getStrike() const{
+    //strike getter
     return strike;
 }
-
-//underlying setter
 void MyOption::setUnderlying(double new_underlying){
+    //underlying setter
     if(checkValue(new_underlying)){
         strike = new_underlying;
     }
@@ -68,14 +60,12 @@ void MyOption::setUnderlying(double new_underlying){
         setUnderlying(new_underlying);
     }
 }
-
-//underlying getter
 double MyOption::getUnderlying() const{
+    //underlying getter
     return underlying;
 }
-
-//put logic
 string MyOption::put() const{
+    //put logic
     if(strike == underlying){
         return "At the money";
     }
@@ -86,9 +76,8 @@ string MyOption::put() const{
         return "Out of the money";
     }
 }
-
-//call logic
 string MyOption::call() const{
+    //call logic
     if(strike == underlying){
         return "At the money";
     }
@@ -99,8 +88,8 @@ string MyOption::call() const{
         return "Out of the money";
     }
 }
-
 void MyOption::choose(){
+    //Ask if the user wants to put or call
     cout << "Would you like to put(p) or call(c)?" << endl;
     string choice;
     cin >> choice;
