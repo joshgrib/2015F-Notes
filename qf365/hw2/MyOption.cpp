@@ -4,7 +4,7 @@
 using namespace std;
 
 //check that numbers are greater than 0
-bool MyOption::checkValue(double value)
+bool MyOption::checkValue(double value) const
 {
     if(value>0){
         return true;
@@ -53,7 +53,7 @@ void MyOption::setStrike(double new_strike){
 }
 
 //strike getter
-double MyOption::getStrike(){
+double MyOption::getStrike() const{
     return strike;
 }
 
@@ -70,12 +70,12 @@ void MyOption::setUnderlying(double new_underlying){
 }
 
 //underlying getter
-double MyOption::getUnderlying(){
+double MyOption::getUnderlying() const{
     return underlying;
 }
 
 //put logic
-string MyOption::put(){
+string MyOption::put() const{
     if(strike == underlying){
         return "At the money";
     }
@@ -88,7 +88,7 @@ string MyOption::put(){
 }
 
 //call logic
-string MyOption::call(){
+string MyOption::call() const{
     if(strike == underlying){
         return "At the money";
     }

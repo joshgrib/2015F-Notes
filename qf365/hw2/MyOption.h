@@ -7,15 +7,15 @@ class MyOption
 public:
     explicit MyOption(double, double);
     void setStrike(double);
-    double getStrike();
+    double getStrike() const;
     void setUnderlying(double);
-    double getUnderlying();
-    string put();
-    string call();
+    double getUnderlying() const;
+    string put() const;
+    string call() const;
     string choose();
 
 private:
-    bool checkValue(double);
+    bool checkValue(double) const;
     void validate(double, double);
     double strike;
     double underlying;
