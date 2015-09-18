@@ -11,6 +11,6 @@ int main(){
     cout << "Strike is now:" << op1.getStrike() << endl;
     cout << "Put:  " << op1.put() << endl;
     cout << "Call: " << op1.call() << endl;
-    op1.choose();
+    //op1.choose();
     return 0;
 }
