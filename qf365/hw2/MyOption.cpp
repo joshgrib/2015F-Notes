@@ -17,15 +17,14 @@ void MyOption::validate(double strike_maybe, double underlying_maybe){
         underlying = underlying_maybe;
     }
     else{
+        //if values aren't valid, enter some new ones
         cout << "Enter some new numbers, they can't be below 0!" << endl;
         double new_strike;
         cout << "New strike price:";
         cin >> new_strike;
-        //double newer_strike = atof(new_strike);
         double new_underlying;
         cout << "New underlying price:";
         cin >> new_underlying;
-        //double newer_underlying = atof(new_underlying);
         validate(new_strike, new_underlying);
     }
 }

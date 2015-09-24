@@ -12,7 +12,6 @@ public:
     string put() const;
     string call() const;
     void choose();
-
 private:
     bool checkValue(double) const;
     void validate(double, double);
