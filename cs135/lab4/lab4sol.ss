@@ -1,0 +1,135 @@
+#lang eopl
+; lab4 assignment Spring 2015
+
+; Objectives of lab:  
+; Practice with lists and recursive definitions, including 
+; relations represented as lists of pairs.
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+; Step 0
+; Save your own copy as lab4sol.ss so you can make your own additions as instructed.
+;
+; Then have a look at the following.
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(define aStringList '("stevens" "in" "the" "news") )
+(define anIntList '(1 2 3 4 5) )
+(define anAtomList '(stevens in the news) )
+(define aPairList '((thing 1) (thing 2) (duckbills 17)) )
+(define aMixedList '("stevens" (thing 2) (3) () 4) ) 
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+; Step 1
+; Evaluate each of the following expressions, first in your head and then at the
+; interactive prompt.  Some will give errors.
+; (car aStringList)
+; (cdr aStringList)
+; (stevens in the news)               "stevens" is undefined
+; '(stevens in the news)
+; (car anIntList)
+; (cdr anIntList)
+; (car (cdr anIntList))
+; (cadr anIntList)
+; (car (car anIntList))               car: contract violation - doesn't return a new list, just an item
+; (car '(1 2 3))
+; (cdr '(1 2 3))
+; (car (cdr '(1 2 3)))
+; (car (1 2 3))                       (1 2 3) is not a list, and 1 is not a function
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+; Step 2 
+; Define function "second" so that it returns the second element of any list 
+; that has at least two elements.  For example
+;   (second '(1 2 3)) should return 2
+;   (second '(a b c d)) should return b
+;   (second '()) can do whatever you like, since '() violates the assumption that
+;     the input has at least two elements.  
+; Hint: first try experimenting with expressions like the ones in Step 1.
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(define (second l)
+  (cadr l))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+; Step 3 - to show TA
+; Define function "has2" with one parameter, assumed to be a list.  It should 
+; return a boolean indicating whether the list has at least two elements.  For example
+;   (has2 '(1 2 3)) should return #t
+;   (has2 '(a b c d)) should return #t
+;   (has2 '()) should return #f
+;   (has2 '(has2)) should return #f (and make you think a bit too)
+;         It's just a one element list
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(define (has2 l)
+  (> (length l) 1))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+; Step 4 - to show TA
+; Refresh your memory about function definitions by looking at atom? and member? below,
+; which are in LS chapt 2.  Then revise the definition of "lgth" so it returns the 
+; length of a list.  (Like the built-in "length" function.)  For example
+;   (lgth '(a b c)) should be 3
+;   (lgth '(a)) should be 1
+;   (lgth '()) should be 0
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(define atom? ; as in the LS
+  (lambda (x) 
+    (and (not (pair? x)) (not (null? x)))))
+
+(define member? ; as in the LS p22
+  (lambda (a lat)
+    (cond
+      ((null? lat) #f)
+      (else (or (eqv? (car lat) a)
+                (member? (a (cdr lat))))))))
+
+(define lgth_wrong
+  (lambda (lst) 
+    99 ; wrong answer for almost all lists 
+    ))
+
+(define (lgth l)
+  (cond
+   ((null? l) 0)
+   (else (+ 1 (lgth(cdr l))))
+   )) 
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+; Step 5 - to show TA
+; Define function "sum" with one parameter, assumed to be a list of numbers.
+; It should return their sum.  For example (sum '(2 8 0 2)) should be 12 and 
+; (sum '()) should be 0.  
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(define (sum n)
+  (if (null? n)
+      0
+      (+ (car n) (sum (cdr n)))))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+; Step 6 - to show TA
+; Below are some relations on today's universe. 
+; Which ones are the graphs of functions?  Are there any injective functions?
+; (You're not writing any code for this step.)
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; 
+(define univ '(a b c d e)) ; today's universe
+
+(define R1 '( (a b) (b b) (c b) (d b) (e b) )) ;surjective, all go to b
+(define R2 '( (a b) (b c) (c d) (d e) (e a) )) ;bijection, one-to-one
+(define R3 '( (a c) (b c) (a b) (c b) (e e) )) ;not a function, a goes to two things
+(define R4 '( (a a) (b b) (c c) (d d) (e e) )) ;bijection, one-to-one
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+; Step 7 - to show TA
+; Define function "ident" with one parameter, assumed to be a list.
+; It should return a list of pairs that represents the identity function.
+; For example, (ident univ) could return R4, or those pairs in a different order.
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; 
+(define (ident l)
+  (map 
+   (lambda l (list (car l) 'a)) 
+   l))
+
+(define (ident2 l)
+  (append 
+   (cons (car l) (car l))
+   (ident2 (cdr l))))

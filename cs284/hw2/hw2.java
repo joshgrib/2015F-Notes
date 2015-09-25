@@ -44,7 +44,6 @@ public class hw2{
         System.out.println("---");
 
         TwoPrevList myL = new TwoPrevList();
-        //Add toString and size between each step
         System.out.println(myL.size() + "  -  " + myL.toString());
         System.out.println(myL.addFirst(1));
         System.out.println(myL.size() + "  -  " + myL.toString());

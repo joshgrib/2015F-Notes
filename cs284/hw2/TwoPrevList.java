@@ -1,7 +1,4 @@
 /*
-        •The code must include tests for all methods implemented.
-*/
-/*
     Josh Gribbon
     CS284 - HW2
     I pledge my honor I have abided by the Stevens Honor System.
@@ -188,6 +185,7 @@ public class TwoPrevList{
         out += "]";
         return out;
     }
+
     //LOOK UP GENERICS
     private class TPNode{
         //declare variables
@@ -211,8 +209,9 @@ public class TwoPrevList{
             prev2 = prev.prev;
         }
     }
+
     public static void main(String[] args) {
-        /*TESTS TO MAKE           COUNT
+        /*TESTS                   COUNT
             Make a new list       0
             addFirst()            1
             addFirst()            2
@@ -251,7 +250,6 @@ public class TwoPrevList{
         System.out.println("---");
 
         TwoPrevList myL = new TwoPrevList();
-        //Add toString and size between each step
         System.out.println(myL.size() + "  -  " + myL.toString());
         System.out.println(myL.addFirst(1));
         System.out.println(myL.size() + "  -  " + myL.toString());
@@ -275,7 +273,7 @@ public class TwoPrevList{
         System.out.println(myL.size() + "  -  " + myL.toString());
         System.out.println(myL.add(12, 11) + "*");
         System.out.println(myL.size() + "  -  " + myL.toString());
-        //System.out.println(myL.get(-1));//
+        //System.out.println(myL.get(-1)); // meant to cause an error
         System.out.println(myL.size() + "  -  " + myL.toString());
         System.out.println(myL.get(0));
         System.out.println(myL.size() + "  -  " + myL.toString());
@@ -283,13 +281,13 @@ public class TwoPrevList{
         System.out.println(myL.size() + "  -  " + myL.toString());
         System.out.println(myL.get(8));
         System.out.println(myL.size() + "  -  " + myL.toString());
-        //System.out.println(myL.get(14));//
+        //System.out.println(myL.get(14)); // meant to cause an error
         System.out.println(myL.size() + "  -  " + myL.toString());
         System.out.println(myL.removeFirst());
         System.out.println(myL.size() + "  -  " + myL.toString());
         System.out.println(myL.removeLast());
         System.out.println(myL.size() + "  -  " + myL.toString());
-        //System.out.println(myL.remove(-1));//
+        //System.out.println(myL.remove(-1)); // meant to cause an error
         System.out.println(myL.size() + "  -  " + myL.toString());
         System.out.println(myL.remove(0));
         System.out.println(myL.size() + "  -  " + myL.toString());
@@ -297,13 +295,13 @@ public class TwoPrevList{
         System.out.println(myL.size() + "  -  " + myL.toString());
         System.out.println(myL.remove(4));
         System.out.println(myL.size() + "  -  " + myL.toString());
-        //System.out.println(myL.remove(4));//
+        //System.out.println(myL.remove(4)); // meant to cause an error
         System.out.println(myL.size() + "  -  " + myL.toString());
         System.out.println(myL.find(4));
         System.out.println(myL.size() + "  -  " + myL.toString());
         System.out.println(myL.find(30));
         System.out.println(myL.size() + "  -  " + myL.toString());
-        //System.out.println(myL.average(-1));//
+        //System.out.println(myL.average(-1)); // meant to cause an error
         System.out.println(myL.size() + "  -  " + myL.toString());
         System.out.println(myL.average(0));
         System.out.println(myL.size() + "  -  " + myL.toString());
@@ -311,9 +309,10 @@ public class TwoPrevList{
         System.out.println(myL.size() + "  -  " + myL.toString());
         System.out.println(myL.average(2));
         System.out.println(myL.size() + "  -  " + myL.toString());
-        //System.out.println(myL.average(8)); //
+        //System.out.println(myL.average(8)); // meant to cause an error
         System.out.println(myL.size() + "  -  " + myL.toString());
 
         System.out.println("---");
+        //maybe use assertEquals(x, y); for testing?
     }
 }
