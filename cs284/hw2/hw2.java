@@ -1,51 +1,111 @@
 /*
-Josh Gribbon
-CS284 - HW1
-I pledge my honor I have abided by the Stevens Honor System.
-
-Note: I didn't need to check for a negative degree or anything like that because it's determined by the length of the array. Any values in the array or fine(assuming they're real numbers).
-*/
-
-/*
-Assignment. Implement a linked list in which a node is linked to its next node as well as to the two previous nodes. Your code must implement the following UML diagrams.
-    •Your class must be named TwoPrevList.
-    •TwoPrevList should contain the private inner class shown in the second UML diagram.
-    •All methods should follow the specifications below.
-
-Hints
-    •Inserting a node to the beginning or end of the list using the add(int index, Double data) method should be allowed.
-    •Make sure that all special cases, e.g. an empty list, are handled.
-
-Submit a single file named TwoPrevList.java. No report is required. Your grade will be determinedas follows:
-    •You will get 0 if your code does not compile.
-    •The code must implement the following UML diagram precisely. ( You can add data members and methods as needed.) It will be tested using a driver.
-    •The code must include tests for all methods implemented.
-    •We will NOT try to feed erroneous and inconsistent inputs to your methods this time.
+    Josh Gribbon
+    CS284 - HW2
+    I pledge my honor I have abided by the Stevens Honor System.
 */
 public class hw2{
     public static void main(String[] args) {
+        /*TESTS TO MAKE           COUNT
+            Make a new list       0
+            addFirst()            1
+            addFirst()            2
+            addFirst()            3
+            addFirst()            4
+            addFirst()            5
+            addFirst()            6
+            addFirst()            7
+            addLast()             8
+            add(-1) - false
+            add(0)                9
+            add(3)                10
+            add(12) - false
+            get(-1) - error
+            get(0)
+            get(2)
+            get(3)
+            get(14) - error
+            removeFirst()         9
+            removeLast()          8
+            remove(-1) - error
+            remove(0)             7
+            remove(2)             6
+            remove(5)             5
+            remove(5) - error
+            find(existing)
+            find(non-existing)
+            average(-1) - error
+            average(0)
+            average(1)
+            average(4)
+            average(8) - error
+            toString() - between every step
+
+        */
         System.out.println("---");
 
         TwoPrevList myL = new TwoPrevList();
-        myL.addFirst(10.0);
-        myL.addLast(15.8);
-        myL.addLast(25);
-        myL.addLast(25);
-        myL.addLast(25);
-        myL.addFirst(10.0);
-        myL.addFirst(10.0);
-        System.out.println(myL.get(4));
-        System.out.println("Size: " + myL.size());
-        System.out.println(myL.toString());
-        TwoPrevList.TPNode myN = myL.getNode(4);
-        System.out.println(myN.data);
-        System.out.println(myN.next.data);
-        System.out.println(myN.prev.data);
-        //System.out.println(myN.prev2.data);
+        //Add toString and size between each step
+        System.out.println(myL.size() + "  -  " + myL.toString());
+        System.out.println(myL.addFirst(1));
+        System.out.println(myL.size() + "  -  " + myL.toString());
+        System.out.println(myL.addFirst(2));
+        System.out.println(myL.size() + "  -  " + myL.toString());
+        System.out.println(myL.addFirst(3));
+        System.out.println(myL.size() + "  -  " + myL.toString());
+        System.out.println(myL.addFirst(4));
+        System.out.println(myL.size() + "  -  " + myL.toString());
+        System.out.println(myL.addFirst(5));
+        System.out.println(myL.size() + "  -  " + myL.toString());
+        System.out.println(myL.addFirst(6));
+        System.out.println(myL.size() + "  -  " + myL.toString());
+        System.out.println(myL.addFirst(7));
+        System.out.println(myL.size() + "  -  " + myL.toString());
+        System.out.println(myL.add(-1, 8) + "*");
+        System.out.println(myL.size() + "  -  " + myL.toString());
+        System.out.println(myL.add(0, 9));
+        System.out.println(myL.size() + "  -  " + myL.toString());
+        System.out.println(myL.add(3, 10));
+        System.out.println(myL.size() + "  -  " + myL.toString());
+        System.out.println(myL.add(12, 11) + "*");
+        System.out.println(myL.size() + "  -  " + myL.toString());
+        //System.out.println(myL.get(-1));//
+        System.out.println(myL.size() + "  -  " + myL.toString());
+        System.out.println(myL.get(0));
+        System.out.println(myL.size() + "  -  " + myL.toString());
+        System.out.println(myL.get(2));
+        System.out.println(myL.size() + "  -  " + myL.toString());
+        System.out.println(myL.get(8));
+        System.out.println(myL.size() + "  -  " + myL.toString());
+        //System.out.println(myL.get(14));//
+        System.out.println(myL.size() + "  -  " + myL.toString());
         System.out.println(myL.removeFirst());
+        System.out.println(myL.size() + "  -  " + myL.toString());
         System.out.println(myL.removeLast());
-        System.out.println("Size: " + myL.size());
-        System.out.println(myL.toString());
+        System.out.println(myL.size() + "  -  " + myL.toString());
+        //System.out.println(myL.remove(-1));//
+        System.out.println(myL.size() + "  -  " + myL.toString());
+        System.out.println(myL.remove(0));
+        System.out.println(myL.size() + "  -  " + myL.toString());
+        System.out.println(myL.remove(2));
+        System.out.println(myL.size() + "  -  " + myL.toString());
+        System.out.println(myL.remove(4));
+        System.out.println(myL.size() + "  -  " + myL.toString());
+        //System.out.println(myL.remove(4));//
+        System.out.println(myL.size() + "  -  " + myL.toString());
+        System.out.println(myL.find(4));
+        System.out.println(myL.size() + "  -  " + myL.toString());
+        System.out.println(myL.find(30));
+        System.out.println(myL.size() + "  -  " + myL.toString());
+        //System.out.println(myL.average(-1));//
+        System.out.println(myL.size() + "  -  " + myL.toString());
+        System.out.println(myL.average(0));
+        System.out.println(myL.size() + "  -  " + myL.toString());
+        System.out.println(myL.average(1));
+        System.out.println(myL.size() + "  -  " + myL.toString());
+        System.out.println(myL.average(2));
+        System.out.println(myL.size() + "  -  " + myL.toString());
+        //System.out.println(myL.average(8)); //
+        System.out.println(myL.size() + "  -  " + myL.toString());
 
         System.out.println("---");
     }
