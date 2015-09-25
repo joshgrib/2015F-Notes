@@ -90,7 +90,7 @@ public class TwoPrevList{
     }
     public double removeFirst (){
         // Removes and returns the data at the head
-        if(size() == 0)){
+        if(size() == 0){
             throw new IllegalArgumentException("Index out of range");
         }
         TPNode temp = head;
@@ -101,7 +101,7 @@ public class TwoPrevList{
     }
     public double removeLast (){
         // Removes and returns the data at the tail
-        if(size() == 0)){
+        if(size() == 0){
             throw new IllegalArgumentException("Index out of range");
         }
         TPNode temp = tail;
@@ -112,7 +112,7 @@ public class TwoPrevList{
     }
     public double remove (int i){
         // Removes and returns the element at index i
-        if(i<0 || i>(size()-1 || size()==0)){
+        if(i<0 || i>(size()-1) || size()==0){
             throw new IllegalArgumentException("Index out of range");
         }
         double dat;
@@ -153,7 +153,7 @@ public class TwoPrevList{
         double prev;
         double prev2;
         double resp;
-        if(i<0 || i>(size()-1 || size()==0)){
+        if(i<0 || i>(size()-1) || size()==0){
             throw new IllegalArgumentException("Index out of range");
         }
         if(i==0){
@@ -210,5 +210,110 @@ public class TwoPrevList{
             prev = pr;
             prev2 = prev.prev;
         }
+    }
+    public static void main(String[] args) {
+        /*TESTS TO MAKE           COUNT
+            Make a new list       0
+            addFirst()            1
+            addFirst()            2
+            addFirst()            3
+            addFirst()            4
+            addFirst()            5
+            addFirst()            6
+            addFirst()            7
+            addLast()             8
+            add(-1) - false
+            add(0)                9
+            add(3)                10
+            add(12) - false
+            get(-1) - error
+            get(0)
+            get(2)
+            get(3)
+            get(14) - error
+            removeFirst()         9
+            removeLast()          8
+            remove(-1) - error
+            remove(0)             7
+            remove(2)             6
+            remove(5)             5
+            remove(5) - error
+            find(existing)
+            find(non-existing)
+            average(-1) - error
+            average(0)
+            average(1)
+            average(4)
+            average(8) - error
+            toString() - between every step
+
+        */
+        System.out.println("---");
+
+        TwoPrevList myL = new TwoPrevList();
+        //Add toString and size between each step
+        System.out.println(myL.size() + "  -  " + myL.toString());
+        System.out.println(myL.addFirst(1));
+        System.out.println(myL.size() + "  -  " + myL.toString());
+        System.out.println(myL.addFirst(2));
+        System.out.println(myL.size() + "  -  " + myL.toString());
+        System.out.println(myL.addFirst(3));
+        System.out.println(myL.size() + "  -  " + myL.toString());
+        System.out.println(myL.addFirst(4));
+        System.out.println(myL.size() + "  -  " + myL.toString());
+        System.out.println(myL.addFirst(5));
+        System.out.println(myL.size() + "  -  " + myL.toString());
+        System.out.println(myL.addFirst(6));
+        System.out.println(myL.size() + "  -  " + myL.toString());
+        System.out.println(myL.addFirst(7));
+        System.out.println(myL.size() + "  -  " + myL.toString());
+        System.out.println(myL.add(-1, 8) + "*");
+        System.out.println(myL.size() + "  -  " + myL.toString());
+        System.out.println(myL.add(0, 9));
+        System.out.println(myL.size() + "  -  " + myL.toString());
+        System.out.println(myL.add(3, 10));
+        System.out.println(myL.size() + "  -  " + myL.toString());
+        System.out.println(myL.add(12, 11) + "*");
+        System.out.println(myL.size() + "  -  " + myL.toString());
+        //System.out.println(myL.get(-1));//
+        System.out.println(myL.size() + "  -  " + myL.toString());
+        System.out.println(myL.get(0));
+        System.out.println(myL.size() + "  -  " + myL.toString());
+        System.out.println(myL.get(2));
+        System.out.println(myL.size() + "  -  " + myL.toString());
+        System.out.println(myL.get(8));
+        System.out.println(myL.size() + "  -  " + myL.toString());
+        //System.out.println(myL.get(14));//
+        System.out.println(myL.size() + "  -  " + myL.toString());
+        System.out.println(myL.removeFirst());
+        System.out.println(myL.size() + "  -  " + myL.toString());
+        System.out.println(myL.removeLast());
+        System.out.println(myL.size() + "  -  " + myL.toString());
+        //System.out.println(myL.remove(-1));//
+        System.out.println(myL.size() + "  -  " + myL.toString());
+        System.out.println(myL.remove(0));
+        System.out.println(myL.size() + "  -  " + myL.toString());
+        System.out.println(myL.remove(2));
+        System.out.println(myL.size() + "  -  " + myL.toString());
+        System.out.println(myL.remove(4));
+        System.out.println(myL.size() + "  -  " + myL.toString());
+        //System.out.println(myL.remove(4));//
+        System.out.println(myL.size() + "  -  " + myL.toString());
+        System.out.println(myL.find(4));
+        System.out.println(myL.size() + "  -  " + myL.toString());
+        System.out.println(myL.find(30));
+        System.out.println(myL.size() + "  -  " + myL.toString());
+        //System.out.println(myL.average(-1));//
+        System.out.println(myL.size() + "  -  " + myL.toString());
+        System.out.println(myL.average(0));
+        System.out.println(myL.size() + "  -  " + myL.toString());
+        System.out.println(myL.average(1));
+        System.out.println(myL.size() + "  -  " + myL.toString());
+        System.out.println(myL.average(2));
+        System.out.println(myL.size() + "  -  " + myL.toString());
+        //System.out.println(myL.average(8)); //
+        System.out.println(myL.size() + "  -  " + myL.toString());
+
+        System.out.println("---");
     }
 }

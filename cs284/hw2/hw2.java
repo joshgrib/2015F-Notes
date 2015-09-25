@@ -60,52 +60,6 @@ public class hw2{
         System.out.println(myL.size() + "  -  " + myL.toString());
         System.out.println(myL.addFirst(7));
         System.out.println(myL.size() + "  -  " + myL.toString());
-        System.out.println(myL.add(-1, 8) + "*");
-        System.out.println(myL.size() + "  -  " + myL.toString());
-        System.out.println(myL.add(0, 9));
-        System.out.println(myL.size() + "  -  " + myL.toString());
-        System.out.println(myL.add(3, 10));
-        System.out.println(myL.size() + "  -  " + myL.toString());
-        System.out.println(myL.add(12, 11) + "*");
-        System.out.println(myL.size() + "  -  " + myL.toString());
-        //System.out.println(myL.get(-1));//
-        System.out.println(myL.size() + "  -  " + myL.toString());
-        System.out.println(myL.get(0));
-        System.out.println(myL.size() + "  -  " + myL.toString());
-        System.out.println(myL.get(2));
-        System.out.println(myL.size() + "  -  " + myL.toString());
-        System.out.println(myL.get(8));
-        System.out.println(myL.size() + "  -  " + myL.toString());
-        //System.out.println(myL.get(14));//
-        System.out.println(myL.size() + "  -  " + myL.toString());
-        System.out.println(myL.removeFirst());
-        System.out.println(myL.size() + "  -  " + myL.toString());
-        System.out.println(myL.removeLast());
-        System.out.println(myL.size() + "  -  " + myL.toString());
-        //System.out.println(myL.remove(-1));//
-        System.out.println(myL.size() + "  -  " + myL.toString());
-        System.out.println(myL.remove(0));
-        System.out.println(myL.size() + "  -  " + myL.toString());
-        System.out.println(myL.remove(2));
-        System.out.println(myL.size() + "  -  " + myL.toString());
-        System.out.println(myL.remove(4));
-        System.out.println(myL.size() + "  -  " + myL.toString());
-        //System.out.println(myL.remove(4));//
-        System.out.println(myL.size() + "  -  " + myL.toString());
-        System.out.println(myL.find(4));
-        System.out.println(myL.size() + "  -  " + myL.toString());
-        System.out.println(myL.find(30));
-        System.out.println(myL.size() + "  -  " + myL.toString());
-        //System.out.println(myL.average(-1));//
-        System.out.println(myL.size() + "  -  " + myL.toString());
-        System.out.println(myL.average(0));
-        System.out.println(myL.size() + "  -  " + myL.toString());
-        System.out.println(myL.average(1));
-        System.out.println(myL.size() + "  -  " + myL.toString());
-        System.out.println(myL.average(2));
-        System.out.println(myL.size() + "  -  " + myL.toString());
-        //System.out.println(myL.average(8)); //
-        System.out.println(myL.size() + "  -  " + myL.toString());
 
         System.out.println("---");
     }
