@@ -1,6 +1,6 @@
 #include <iostream>
 #include <string>
-#define Included_MyOption_H
+#include "MyOption.h"
 using namespace std;
 
 bool MyOption::checkValue(double value) const{
@@ -13,8 +13,6 @@ bool MyOption::checkValue(double value) const{
 void MyOption::validate(double strike_maybe, double underlying_maybe){
     //ensure that strike and underlying are valid numbers
     if(checkValue(strike_maybe) && checkValue(underlying_maybe>0)){
-        strike = strike_maybe;
-        underlying = underlying_maybe;
     }
     else{
         //if values aren't valid, enter some new ones

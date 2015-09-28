@@ -1,3 +1,4 @@
+#pragma once //makes sure it's only included once
 #include <iostream>
 #include <string>
 using namespace std;
