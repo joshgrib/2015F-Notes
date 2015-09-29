@@ -7,6 +7,7 @@ using namespace std;
 int main(){
     MyOption op1(1000, 2000);
     cout << "Strike is:" << op1.getStrike() << endl;
+    cout << "Changing strike..." << endl;
     op1.setStrike(2100);
     cout << "Strike is:" << op1.getStrike() << endl;
     cout << "Put:  " << op1.put() << endl;
