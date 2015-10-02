@@ -13,10 +13,13 @@ using namespace std;
 
 
 int main(){
-    bag myB(10);
-    myB.insert(3);
+    double mv = 5.4;
+    double *ptr = &mv;
 
-    cout << "Size:" << myB.get_size() << endl;
+    cout << mv << endl;    //5.4
+    cout << ptr << endl;   //0x7ffd6caca8b8
+    cout << *ptr << endl;   //5.4
+    //the asterisk dereferences the pointer and returns the value
 
     return 0;
 }
