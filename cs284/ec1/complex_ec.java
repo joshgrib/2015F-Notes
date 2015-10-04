@@ -300,5 +300,25 @@ public class complex_ec{
         System.out.println( "-----------Testing  conversion-----------" );
         System.out.println( "Cart --> polar :   " + a.toPolar() );
         System.out.println( "Polar --> cart :   " + c.toCart() );
+        /* PRINTOUT
+            --------------Testing  plus--------------
+            Cart + cart    :   Cartesian complex number: (-1.0, -1.0)
+            Cart + polar   :   Cartesian complex number: (-1.9499624830022269, -3.294399959700664)
+            Polar + cart   :   Polar complex number: (3.848099454335094, 0.6765444990121996)
+            Polar + polar  :   Polar complex number: (8.775825618903728, -0.5104544766167629)
+            --------------Testing minus--------------
+            Cart - cart    :   Cartesian complex number: (7.0, -7.0)
+            Cart - polar   :   Cartesian complex number: (-1.9499624830022269, -3.294399959700664)
+            Polar - cart   :   Polar complex number: (9.229958320032974, 9.020078088116755)
+            Polar - polar  :   Polar complex number: (4.79425538604203, -0.3931480924056103)
+            --------------Testing times--------------
+            Cart * cart    :   Cartesian complex number: (0.0, 25.0)
+            Cart * polar   :   Cartesian complex number: (-12.027487287809336, 21.916650052906917)
+            Polar * cart   :   Polar complex number: (24.999999999999996, -0.6037873099523913)
+            Polar * polar  :   Polar complex number: (25.0, 2.219689112726943)
+            -----------Testing  conversion-----------
+            Cart --> polar :   Polar complex number: (5.0, -0.9315964599440725)
+            Polar --> cart :   Cartesian complex number: (-4.949962483002227, 0.7056000402993361)
+        */
     }
 }
