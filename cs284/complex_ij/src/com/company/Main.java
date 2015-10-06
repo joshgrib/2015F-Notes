@@ -1,14 +1,9 @@
-/** A class to represent complex numbers
- *  CS284 - Data Structures
- *  Extra credit assignment 1
- *  I pledge my honor I have abided by the Stevens Honor System - Josh Gribbon
- *
- * @author Josh Gribbon
- */
-public class complex_ec{
-    /**Abstract class of complex numbers
-     * @generic BT          The base type
-     * @generic OT          The other type
+package com.company;
+
+public class Main {
+    /*Abstract class of complex numbers
+     * @symbol BT          The base type
+     * @symbol OT          The other type
      */
     public static abstract class Complex<BT,OT>{
         public abstract String toString();
@@ -326,9 +321,6 @@ public class complex_ec{
             -----------Testing  conversion-----------
             Cart --> polar :   Polar complex number: (5.0, -0.9315964599440725)
             Polar --> cart :   Cartesian complex number: (-4.949962483002227, 0.7056000402993361)
-            ---------Testing  getters/setters--------
-            New I: 1.0, new R: 2.0
-            New A: 3.0, new R: 4.0
         */
     }
 }
