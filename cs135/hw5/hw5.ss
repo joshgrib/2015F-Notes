@@ -71,19 +71,18 @@
 ; a number or an atom, because those are not lists.
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(define (eiu? x) ;stands for element in universe
-  (or 
-   (eqv? (car x) 'a) 
-   (eqv? (car x) 'b)
-   (eqv? (car x) 'c)
-   (eqv? (car x) 'd)
-   (eqv? (car x) 'e)))
+(define (eiu? x U)
+  (cond
+    ((null? U) #f)
+    (else (or
+           (eqv? x (car U))
+           (eiu? x (cdr U))))))
 
 (define (liu? xs)
   (cond
     ((null? xs) #t)
     (else
-     (and (eiu? (car xs)) (liu? (cdr xs))))))
+     (and (eiu? (caar xs) theUniverse) (liu? (cdr xs))))))
 
 (define (lopU? xs)
   (and (lop? xs) (liu? xs)))
