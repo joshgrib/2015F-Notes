@@ -442,6 +442,7 @@ public class hw3{
                     newArrival();
                     lastArrival = nextArrival;
                     //THESE ARENT UPDATING!!!  (╯°□°)╯︵ ┻━┻
+                    //I'm sorry table          ┬─┬﻿ ノ( ゜-゜ノ)
                     System.out.println(lastArrival);
                     System.out.println(nextArrival);
                 }
