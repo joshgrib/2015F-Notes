@@ -267,13 +267,13 @@ public class hw3{
         /**A clock for timekeeping
          * @deprecated
          */
-        //private Clock clock;
+        private Clock clock;
         /**The start time of the simulation*/
         private long startTime;
         /**Random object for random numbers, with seed based on time*/
-        private Random rand = new Random(System.nanoTime());
+        private Random rand = new Random(System.currentTimeMillis());
         /**Integer of seconds between arrivals*/
-        private int sba;
+        private long sba;
         /**To scale the simulation speed*/
         private long ts;
 
@@ -294,7 +294,7 @@ public class hw3{
             int normalLines,
             int freqFlyerLines,
             int mode,
-            int secsBetweenArrivals,
+            long secsBetweenArrivals,
             long timescale){
 
             this.minProcTime = minProcT;
@@ -316,10 +316,10 @@ public class hw3{
                 freqFlyerLine[k] = new Line();
             }
 
-            this.sba = secsBetweenArrivals * (int)timescale;
+            this.sba = secsBetweenArrivals;
             this.ts = timescale;
 
-            startTime = System.nanoTime();
+            startTime = System.currentTimeMillis();
 
             System.out.println("Simulation created with:");
             System.out.println("    Minimum processing time:       " + minProcT);
@@ -345,7 +345,7 @@ public class hw3{
          * @return The elapsed time in nanoseconds
          */
         private long getTime(){
-            return (System.nanoTime()-startTime);
+            return (System.currentTimeMillis()-startTime);
         }
 
         /**Determines the processing time of a passenger
@@ -427,13 +427,13 @@ public class hw3{
                     if(server[s].isIdle()){
                         Passenger served = server[s].serve(normalLine, freqFlyerLine);
                         if(served != null){
-                            //System.out.println(System.nanoTime());
-                            long start = System.nanoTime();
-                            while((served.procTime + start) > System.nanoTime()){
+                            //System.out.println(System.currentTimeMillis());
+                            long start = System.currentTimeMillis();
+                            while((served.procTime + start) > System.currentTimeMillis()){
                                 //System.out.println("processing");
                             }
                             System.out.println("Served passenger " + served.passID);// + " who had a proctime of " + served.procTime);
-                            //System.out.println(System.nanoTime());
+                            //System.out.println(System.currentTimeMillis());
                             //System.out.println("---------------------------------------------");
                         }
                     }
@@ -446,6 +446,7 @@ public class hw3{
                     System.out.println(lastArrival);
                     System.out.println(nextArrival);
                 }
+                status();
             }
             System.out.println("----ENDING SIMULATION----");
         }
@@ -473,7 +474,7 @@ public class hw3{
         int SERVERS = 1;
 
         long TIMESCALE = 960; //run at 480x speed - 1 hour = 7.5 seconds
-        long SECONDS = 1000000000/TIMESCALE;//1 billion nanoseconds in a second
+        long SECONDS = 1000/TIMESCALE;//1 billion nanoseconds in a second
         long MINUTES = 60 * SECONDS;
         long HOURS = 60 * MINUTES;
 
@@ -484,11 +485,10 @@ public class hw3{
         int NORMAL_LINES = 1;
         int FREQ_FLYER_LINES = 1;
         int MODE = 2; //1 for alternate, 2 for longest, 3 for all FF first
-        int SECS_BETWEEN_ARRIVALS = 10 * (int)MINUTES;
+        long SECS_BETWEEN_ARRIVALS = 5 * MINUTES;
         Sim mySim = new Sim(SERVERS, MIN_PROC_TIME, MAX_PROC_TIME, SIM_DURATION, NORMAL_LINES, FREQ_FLYER_LINES, MODE, SECS_BETWEEN_ARRIVALS, TIMESCALE);
 
-        System.out.println(MINUTES);
-        System.out.println((int)MINUTES);
+        System.out.println(SECS_BETWEEN_ARRIVALS);
         mySim.status();
         mySim.run();
     }
