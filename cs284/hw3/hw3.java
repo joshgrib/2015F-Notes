@@ -9,6 +9,18 @@
 /*  NOTES
     Use setters in constructors so I can add data validation later if I want to
     When a new passenger comes, they should go in the shortest of their type of line
+    PROBLEM - on mode 1, FF are never served first
+        New passenger, added to an FF line!
+        New passenger, added to an FF line!
+        New passenger, added to an FF line!
+        New passenger, added to an FF line!
+        New passenger, added to a normal line!
+        Served passenger 4, FF:false
+        New passenger, added to a normal line!
+        Served passenger 0, FF:true
+        Served passenger 5, FF:false
+        ...
+
 */
 import java.util.*;
 import java.time.*;
@@ -28,7 +40,7 @@ public class hw3{
          */
         private int mode;
         /**Track the last passenger served, equal to the FF status of the passenger*/
-        private boolean lastServed = true;
+        private boolean lastServedFF = true;
 
         /**Constructor*/
         public Server(int m){
@@ -62,21 +74,28 @@ public class hw3{
             switch(this.mode){
                 case 1:
                 //alternate
-                toServe = norm[0];
-                if(this.lastServed || ff[0] == null){
+                //toServe = ff[0];
+                if( this.lastServedFF || ((ff[0].size() == 0) && (norm[0].size() > 0)) ){
+                    toServe = norm[0];
                     for(int i=0; i<norm.length; i++){
                         if(norm[i].look() != null && toServe.look() != null){
                             if(norm[i].look().passID < toServe.look().passID)
                                 toServe = norm[i];
                         }
                     }
-                }else{
+                }
+                else if( !this.lastServedFF || ((ff[0].size() > 0) && (norm[0].size() == 0)) ){
+                    toServe = ff[0];
                     for(int j=0; j<ff.length; j++){
                         if(ff[j].look() != null && toServe.look() != null){
                             if(ff[j].look().passID < toServe.look().passID)
                                 toServe = ff[j];
                         }
                     }
+                }else{
+                    //this should never happen but it needs to be here
+                    System.out.println("The thing that was never supposed to happen happened. Check Server.serve() under case 1.");
+                    toServe = null;
                 }
                 break;
 
@@ -118,7 +137,8 @@ public class hw3{
                 break;
             }
             if(toServe.look() != null)
-                this.lastServed = toServe.look().isFreqFlyer();
+                this.lastServedFF = toServe.look().isFreqFlyer();
+            //System.out.println(this.lastServedFF);
             return toServe.serve();
         }
     }
@@ -378,6 +398,7 @@ public class hw3{
                     }
                 }
                 shortest.add(p);
+                System.out.println("New passenger added to an FF line!");
             }
             else {
                 Line shortest = normalLine[0];
@@ -387,6 +408,7 @@ public class hw3{
                     }
                 }
                 shortest.add(p);
+                System.out.println("New passenger added to a normal line!");
             }
         }
 
@@ -432,7 +454,8 @@ public class hw3{
                             while((served.procTime + start) > System.currentTimeMillis()){
                                 //System.out.println("processing");
                             }
-                            System.out.println("Served passenger " + served.passID);// + " who had a proctime of " + served.procTime);
+                            System.out.println("Served passenger " + served.passID + ", FF:" + served.isFreqFlyer());// + " who had a proctime of " + served.procTime);
+                            System.out.println("Last served FF?: " + server[s].lastServedFF);
                             //System.out.println(System.currentTimeMillis());
                             //System.out.println("---------------------------------------------");
                         }
@@ -441,12 +464,8 @@ public class hw3{
                 if( getTime() > nextArrival ){
                     newArrival();
                     lastArrival = nextArrival;
-                    //THESE ARENT UPDATING!!!  (╯°□°)╯︵ ┻━┻
-                    //I'm sorry table          ┬─┬﻿ ノ( ゜-゜ノ)
-                    System.out.println(lastArrival);
-                    System.out.println(nextArrival);
                 }
-                status();
+                //status();
             }
             System.out.println("----ENDING SIMULATION----");
         }
@@ -456,41 +475,40 @@ public class hw3{
     /**Main method - used for testing*/
     public static void main(String[] args) {
         /*
-        Passenger josh = new Passenger(0, 2000, 4000, true);
-        System.out.println(josh.passID);
-        System.out.println(josh.arrivalTime);
-        System.out.println(josh.procTime);
-        System.out.println(josh.isFreqFlyer);
-        Server bob = new Server();
-        System.out.println(bob.isIdle);
-        Line myLine = new Line();
-        myLine.add(josh);
-        System.out.println(myLine.size());
-        System.out.println(myLine.look().passID);
-        System.out.println(myLine.serve().passID);
-        System.out.println(myLine.size());
+            Passenger josh = new Passenger(0, 2000, 4000, true);
+            System.out.println(josh.passID);
+            System.out.println(josh.arrivalTime);
+            System.out.println(josh.procTime);
+            System.out.println(josh.isFreqFlyer);
+            Server bob = new Server();
+            System.out.println(bob.isIdle);
+            Line myLine = new Line();
+            myLine.add(josh);
+            System.out.println(myLine.size());
+            System.out.println(myLine.look().passID);
+            System.out.println(myLine.serve().passID);
+            System.out.println(myLine.size());
         */
         System.out.println("---");
-        int SERVERS = 1;
 
         long TIMESCALE = 960; //run at 480x speed - 1 hour = 7.5 seconds
         long SECONDS = 1000/TIMESCALE;//1 billion nanoseconds in a second
         long MINUTES = 60 * SECONDS;
         long HOURS = 60 * MINUTES;
 
+        int SERVERS = 1;
         long MIN_PROC_TIME = 1 * MINUTES;
-        long MAX_PROC_TIME = 3 * MINUTES;
+        long MAX_PROC_TIME = 5 * MINUTES;
         long SIM_DURATION = 1 * HOURS;
-
         int NORMAL_LINES = 1;
         int FREQ_FLYER_LINES = 1;
-        int MODE = 2; //1 for alternate, 2 for longest, 3 for all FF first
-        long SECS_BETWEEN_ARRIVALS = 5 * MINUTES;
+        int MODE = 1; //1 for alternate, 2 for longest, 3 for all FF first
+        long SECS_BETWEEN_ARRIVALS = 3 * MINUTES;
         Sim mySim = new Sim(SERVERS, MIN_PROC_TIME, MAX_PROC_TIME, SIM_DURATION, NORMAL_LINES, FREQ_FLYER_LINES, MODE, SECS_BETWEEN_ARRIVALS, TIMESCALE);
 
-        System.out.println(SECS_BETWEEN_ARRIVALS);
         mySim.status();
         mySim.run();
+        mySim.status();
     }
 }
 /* TERMINAL OUTPUT
