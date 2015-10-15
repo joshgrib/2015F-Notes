@@ -2,13 +2,14 @@
 #include <string>
 using namespace std;
 
+void ex1();
 void ex2();
 void ex3();
 void initArrayTwo(double, int, int);
 void ex4();
 
 int main(){
-    ex4();
+    ex1();
     return 0;
 }
 
