@@ -1,0 +1,93 @@
+* {
+  margin: 0;
+  padding: 0;
+  font-family: "Oxygen", sans-serif;
+}
+
+body {
+  margin: 3px;
+}
+
+body>header>nav, body>footer>nav {
+  background-color: black;
+  padding: 3px 0px;
+  /*
+    padding numbers go clockwise starting at 12
+    If you only use 2, it will define top/bottom and left/right*/
+  margin-bottom: 10px;
+  width: 100%;
+  display: table;
+}
+/*
+  > means its a direct child of something
+  a space means it's anywhere inside
+*/
+body>header>nav>ul, body>footer>nav>ul {
+  list-style: none;
+  display: table-row;
+  padding: 0;
+}
+body>header li, body>footer li {
+  color:white;
+  margin: 0 30px;
+  text-align: center;
+  display: table-cell;
+}
+img.sectionheader {
+  max-width: 100%;
+  max-height: 100%;
+}
+/*
+  .foo for class="foo"
+  #bar for id="bar"
+*/
+.maincontent {
+  width:75%;
+  
+}
+.maincontent h1 {
+  padding-top: 5px;
+  
+}
+.maincontent p {
+  padding: 10px 0px;
+  text-align: justify;
+}
+aside {
+  float:right;
+  padding-left:5px;
+  width: calc(25% - 5px);
+}
+aside h2 {
+  font-size: 1.5em;
+}
+aside ul {
+  list-style:none;
+  background-color:lightgray;
+}
+aside li {
+  padding: 10px;
+}
+.spotlight h2 {
+  padding: 15px 0 5px 0;
+}
+
+.spotlight article {
+  width: calc(33.33% - 5px);
+  margin-right: 5px;
+  display: inline;
+  float: left;
+}
+.spotlight>article h3 {
+  padding-top: 10px;
+  font-size: 1em;
+}
+.spotlight article>p {
+  padding-bottom: 10px;
+}
+.spotlight footer>pl {
+  text-align: right;
+}
+hr {
+  border: 1px solid gray;
+}

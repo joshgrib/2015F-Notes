@@ -20,7 +20,6 @@
         Served passenger 0, FF:true
         Served passenger 5, FF:false
         ...
-
 */
 import java.util.*;
 import java.time.*;

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<head>
+  <meta charset="utf-8">
+  <title>Table Practice</title>
+</head>
+<body>
+  <p>Basic table in grid format</p>
+
+  <table border="1"><!--Border="1" is deprecated but makes it easier to learn-->
+    <thead>
+      <tr>
+        <td>Student</td>
+        <td>Homework</td>
+        <td>Quiz -1</td>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>John</td>
+        <td>100</td>
+        <td>90</td>
+      </tr>
+      <tr>
+        <td>Mary</td>
+        <td>60</td>
+        <td>80</td>
+      </tr>
+    </tbody>
+    <tfooter>
+      <tr>
+        <td>Average</td>
+        <td>95</td>
+        <td>70</td>
+      </tr>
+    </tfooter>
+  </table>
+
+  <p>Using Rowspan and Colspan</p>
+
+  <table border="1">
+    <thead>
+      <tr>
+        <td>Student</td>
+        <td colspan="2">Nonsense</td>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td rowspan="3">Mark</td>
+        <td>0</td>
+        <td>0</td>
+      </tr>
+      <tr>
+        <td>100</td>
+        <td>110</td>
+      </tr>
+      <tr>
+        <td>50</td>
+        <td>78</td>
+      </tr>
+      <tr>
+        <td>Josh</td>
+        <td>100</td>
+        <td>100</td>
+      </tr>
+    </tbody>
+  </table>
+</body>
