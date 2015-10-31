@@ -397,7 +397,7 @@ public class hw3{
                     }
                 }
                 shortest.add(p);
-                System.out.println("New passenger added to an FF line!");
+                //System.out.println("New passenger added to an FF line!");
             }
             else {
                 Line shortest = normalLine[0];
@@ -407,7 +407,7 @@ public class hw3{
                     }
                 }
                 shortest.add(p);
-                System.out.println("New passenger added to a normal line!");
+                //System.out.println("New passenger added to a normal line!");
             }
         }
 
@@ -454,7 +454,7 @@ public class hw3{
                                 //System.out.println("processing");
                             }
                             System.out.println("Served passenger " + served.passID + ", FF:" + served.isFreqFlyer());// + " who had a proctime of " + served.procTime);
-                            System.out.println("Last served FF?: " + server[s].lastServedFF);
+                            //System.out.println("Last served FF?: " + server[s].lastServedFF);
                             //System.out.println(System.currentTimeMillis());
                             //System.out.println("---------------------------------------------");
                         }
@@ -473,25 +473,10 @@ public class hw3{
 
     /**Main method - used for testing*/
     public static void main(String[] args) {
-        /*
-            Passenger josh = new Passenger(0, 2000, 4000, true);
-            System.out.println(josh.passID);
-            System.out.println(josh.arrivalTime);
-            System.out.println(josh.procTime);
-            System.out.println(josh.isFreqFlyer);
-            Server bob = new Server();
-            System.out.println(bob.isIdle);
-            Line myLine = new Line();
-            myLine.add(josh);
-            System.out.println(myLine.size());
-            System.out.println(myLine.look().passID);
-            System.out.println(myLine.serve().passID);
-            System.out.println(myLine.size());
-        */
         System.out.println("---");
 
         long TIMESCALE = 960; //run at 480x speed - 1 hour = 7.5 seconds
-        long SECONDS = 1000/TIMESCALE;//1 billion nanoseconds in a second
+        long SECONDS = 1000/TIMESCALE;//1 thousand milliseconds in a second
         long MINUTES = 60 * SECONDS;
         long HOURS = 60 * MINUTES;
 
@@ -502,12 +487,28 @@ public class hw3{
         int NORMAL_LINES = 1;
         int FREQ_FLYER_LINES = 1;
         int MODE = 1; //1 for alternate, 2 for longest, 3 for all FF first
-        long SECS_BETWEEN_ARRIVALS = 3 * MINUTES;
+        long SECS_BETWEEN_ARRIVALS = 3 * MINUTES; //this is the average
         Sim mySim = new Sim(SERVERS, MIN_PROC_TIME, MAX_PROC_TIME, SIM_DURATION, NORMAL_LINES, FREQ_FLYER_LINES, MODE, SECS_BETWEEN_ARRIVALS, TIMESCALE);
 
-        mySim.status();
+        long MIN_PROC_TIME2 = 2 * MINUTES;
+        long MAX_PROC_TIME2 = 6 * MINUTES;
+        long SIM_DURATION2 = 2 * HOURS;
+        int MODE2 = 2; //1 for alternate, 2 for longest, 3 for all FF first
+        long SECS_BETWEEN_ARRIVALS2 = 6 * MINUTES; //this is the average
+        Sim mySim2 = new Sim(SERVERS, MIN_PROC_TIME2, MAX_PROC_TIME2, SIM_DURATION2, NORMAL_LINES, FREQ_FLYER_LINES, MODE2, SECS_BETWEEN_ARRIVALS2, TIMESCALE);
+
+        long MIN_PROC_TIME3 = 1 * MINUTES;
+        long MAX_PROC_TIME3 = 3 * MINUTES;
+        long SIM_DURATION3 = 1 * HOURS;
+        int MODE3 = 3; //1 for alternate, 2 for longest, 3 for all FF first
+        long SECS_BETWEEN_ARRIVALS3 = 2 * MINUTES; //this is the average
+        Sim mySim3 = new Sim(SERVERS, MIN_PROC_TIME3, MAX_PROC_TIME3, SIM_DURATION3, NORMAL_LINES, FREQ_FLYER_LINES, MODE3, SECS_BETWEEN_ARRIVALS3, TIMESCALE);
+
+        //mySim.status();
         mySim.run();
-        mySim.status();
+        //mySim.status();
+        mySim2.run();
+        mySim3.run();
     }
 }
 /* TERMINAL OUTPUT
