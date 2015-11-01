@@ -367,8 +367,8 @@ public class hw3{
             return (System.currentTimeMillis()-startTime);
         }
 
-        /**Determines the processing time of a passenger
          * @return Processing time as a long
+        /**Determines the processing time of a passenger
          */
         private long getProcTime(){
             long diff = maxProcTime - minProcTime;
