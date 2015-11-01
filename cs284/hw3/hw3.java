@@ -488,27 +488,54 @@ public class hw3{
         int FREQ_FLYER_LINES = 1;
         int MODE = 1; //1 for alternate, 2 for longest, 3 for all FF first
         long SECS_BETWEEN_ARRIVALS = 3 * MINUTES; //this is the average
-        Sim mySim = new Sim(SERVERS, MIN_PROC_TIME, MAX_PROC_TIME, SIM_DURATION, NORMAL_LINES, FREQ_FLYER_LINES, MODE, SECS_BETWEEN_ARRIVALS, TIMESCALE);
+        Sim mySim = new Sim(
+            SERVERS,
+            MIN_PROC_TIME,
+            MAX_PROC_TIME,
+            SIM_DURATION,
+            NORMAL_LINES,
+            FREQ_FLYER_LINES,
+            MODE,
+            SECS_BETWEEN_ARRIVALS,
+            TIMESCALE);
+        mySim.run();
+        mySim.status();
 
         long MIN_PROC_TIME2 = 2 * MINUTES;
         long MAX_PROC_TIME2 = 6 * MINUTES;
         long SIM_DURATION2 = 2 * HOURS;
         int MODE2 = 2; //1 for alternate, 2 for longest, 3 for all FF first
         long SECS_BETWEEN_ARRIVALS2 = 6 * MINUTES; //this is the average
-        Sim mySim2 = new Sim(SERVERS, MIN_PROC_TIME2, MAX_PROC_TIME2, SIM_DURATION2, NORMAL_LINES, FREQ_FLYER_LINES, MODE2, SECS_BETWEEN_ARRIVALS2, TIMESCALE);
+        Sim mySim2 = new Sim(
+            SERVERS,
+            MIN_PROC_TIME2,
+            MAX_PROC_TIME2,
+            SIM_DURATION2,
+            NORMAL_LINES,
+            FREQ_FLYER_LINES,
+            MODE2,
+            SECS_BETWEEN_ARRIVALS2,
+            TIMESCALE);
+        mySim2.run();
+        mySim2.status();
 
         long MIN_PROC_TIME3 = 1 * MINUTES;
-        long MAX_PROC_TIME3 = 3 * MINUTES;
+        long MAX_PROC_TIME3 = 4 * MINUTES;
         long SIM_DURATION3 = 1 * HOURS;
-        int MODE3 = 3; //1 for alternate, 2 for longest, 3 for all FF first
+        int MODE3 = 1; //1 for alternate, 2 for longest, 3 for all FF first
         long SECS_BETWEEN_ARRIVALS3 = 2 * MINUTES; //this is the average
-        Sim mySim3 = new Sim(SERVERS, MIN_PROC_TIME3, MAX_PROC_TIME3, SIM_DURATION3, NORMAL_LINES, FREQ_FLYER_LINES, MODE3, SECS_BETWEEN_ARRIVALS3, TIMESCALE);
-
-        //mySim.status();
-        mySim.run();
-        //mySim.status();
-        mySim2.run();
+        Sim mySim3 = new Sim(
+            SERVERS,
+            MIN_PROC_TIME3,
+            MAX_PROC_TIME3,
+            SIM_DURATION3,
+            NORMAL_LINES,
+            FREQ_FLYER_LINES,
+            MODE3,
+            SECS_BETWEEN_ARRIVALS3,
+            TIMESCALE);
         mySim3.run();
+        mySim3.status();
     }
 }
 /* TERMINAL OUTPUT
