@@ -1,0 +1,54 @@
+* {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+body {
+  background: linear-gradient(gray, white) fixed;
+}
+#wrapper {
+  width: 75%;
+  /*Top and bottom are 40, sides are auto */
+  margin: 40px auto;
+  background-color: white;
+  padding: 10px;
+  box-shadow: 10px 10px 10px black;
+}
+h1 {
+  text-align: center;
+  padding: 5px 0;
+}
+section {
+  -webkit-columns: 350px 3;
+  -moz-columns: 350px 3;
+  -ms-columns: 350px 3;
+  -o-columns: 350px 3;
+  columns: 350px 3;
+  
+  -webkit-column-gap: 20px;
+  -moz-column-gap: 20px;
+  -ms-column-gap: 20px;
+  -o-column-gap: 20px;
+  column-gap: 20px;
+  
+  -webkit-column-rule: thin gray solid;
+  -moz-column-rule: thin gray solid;
+  -ms-column-rule: thin gray solid;
+  -o-column-rule: thin gray solid;
+  column-rule: thin gray solid;
+}
+section p {
+  margin-bottom: 10px;
+  text-align: justify;
+  text-indent: 2em;
+}
+/*Media override has to be after the definition it overrides, best to keep it at the bottom*/
+@media print {
+  #wrapper {
+    width: 90%;
+    margin: 10px auto;
+    background-color: white;
+    padding: 10px;
+    box-shadow: none;
+  }
+}

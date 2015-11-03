@@ -1,0 +1,113 @@
+/**********************************************
+ * Name: Josh Gribbon
+ * Date: 11/ /15
+ * Pledge: I pledge my honor I have abided by the Stevens Honor System
+ * Assignment: CSS Homework
+ *********************************************/
+* {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  /*letter-spacing: 0.01em;*/
+  font-stretch: expanded;
+}
+body {
+  width: 75%;
+  margin: 40px auto;
+  background-color: gray;
+}
+#wrapper {
+  background-color: white;
+  padding: 10px;
+  border-radius: 10px;
+  box-shadow: 10px 10px 10px;
+}
+
+/* Place header styles here. */
+
+/* End header styles here. */
+#upper img {
+  max-width: 100%;
+}
+#upper figcaption {
+  text-align: right;
+  font-size: 1.25em;
+  font-style: italic;
+  margin-bottom: 10px;
+}
+header h1{
+  text-align: left;
+  font-size: 2.5em;
+}
+header p {
+  font-size: 1.5em;
+}
+header>nav{
+  clear:both;
+  padding: 3px 0px;
+  background-color: black;
+  /*
+    padding numbers go clockwise starting at 12
+    If you only use 2, it will define top/bottom and left/right*/
+  margin-bottom: 10px;
+  margin-top: 10px;
+  width: 100%;
+  display: table;
+}
+a {
+  color: white;
+  text-decoration: none;
+}
+body header ul{
+  list-style: none;
+  display: table-row;
+  padding: 0;
+}
+header li{
+  color:white;
+  margin: 0 30px;
+  text-align: center;
+  display: table-cell;
+  width:15%
+}
+#content {
+  -webkit-columns: 250px 3;
+  -moz-columns: 250px 3;
+  -ms-columns: 250px 3;
+  -o-columns: 250px 3;
+  columns: 250px 3;
+  
+  -webkit-column-gap: 20px;
+  -moz-column-gap: 20px;
+  -ms-column-gap: 20px;
+  -o-column-gap: 20px;
+  column-gap: 20px;
+  
+  -webkit-column-rule: thin gray solid;
+  -moz-column-rule: thin gray solid;
+  -ms-column-rule: thin gray solid;
+  -o-column-rule: thin gray solid;
+  column-rule: thin gray solid;
+}
+#content p {
+  margin-bottom: 10px;
+  text-align: justify;
+  text-indent: 2em;
+}
+/* Place anchor styles here. */
+
+/* End anchor styles here. */
+@media print {
+  #content {
+
+  }
+  body {
+    width: 100%;
+  }
+  #wrapper {
+    width: 90%;
+    margin: 10px auto;
+    box-shadow: 0 0 0;
+    border-radius: 0 0 0;
+  }
+}
