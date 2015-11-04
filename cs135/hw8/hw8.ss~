@@ -1,0 +1,14 @@
+#lang racket
+;
+(define (expo n i)
+  (cond
+    [(>= 0 i) 1]
+    [else (* n (expo n (- i 1)))]))
+(define test-expo
+  (and
+   (eqv? (expo 2 0) 1)
+   (eqv? (expo 2 1) 2)
+   (eqv? (expo 2 2) 4)
+   (eqv? (expo 2 6) 64)
+   ))
+   
