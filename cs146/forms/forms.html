@@ -1,0 +1,22 @@
+<!DOCTYPE HTML>
+<html lang="en-us">
+<head>
+  <title>Practice with Forms</title>
+  <meta charset="utf-8">
+  <link rel="stylesheet" type="text/css" href="forms.css">
+  <script type="text/javascript">
+  </script>
+</head>
+<body>
+  <!--Useful to have name and id match. Name is for data, id is for styling-->
+  <!--GET puts stuff in the url, POST doesnt-->
+  <form name="form1" id="form1" autocomplete="off" mathod="GET" onsubmit="return false;">
+    <fieldset>
+      <legend>User Info</legend>
+      <label for="firstname" class="labelitem">First name:</label>
+      <input type="text" name="firstname" id="firstname" size="24" maxlength="32" placeholder="Enter first name." required pattern="[a-zA-Z'\- ]+" title="First name cannot be blank." /><br />
+      
+    </fieldset>
+  </form>
+</body>
+</html>

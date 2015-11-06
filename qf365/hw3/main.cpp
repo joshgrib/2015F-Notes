@@ -8,6 +8,8 @@ using namespace std;
 int main(){
     cout << "Hello Josh" << endl;
     Queens myQ(4);
-    myQ.printBoard();
+    Queens myQ2(6);
+    Queens myQ3(8);
+    //myQ.printBoard();
     return 0;
 }

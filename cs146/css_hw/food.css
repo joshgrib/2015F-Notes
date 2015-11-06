@@ -14,6 +14,7 @@ body {
   width: 75%;
   margin: 40px auto;
   background-color: gray;
+  min-width: 360px;
 }
 #wrapper {
   background-color: white;
@@ -52,6 +53,7 @@ header>nav{
   margin-top: 10px;
   width: 100%;
   display: table;
+  white-space: nowrap;
 }
 a {
   color: white;
@@ -64,10 +66,10 @@ body header ul{
 }
 header li{
   color:white;
-  margin: 0 30px;
+  margin: 0 5px;
   text-align: center;
   display: table-cell;
-  width:15%
+  width:16%
 }
 #content {
   -webkit-columns: 250px 3;
@@ -75,13 +77,13 @@ header li{
   -ms-columns: 250px 3;
   -o-columns: 250px 3;
   columns: 250px 3;
-  
+
   -webkit-column-gap: 20px;
   -moz-column-gap: 20px;
   -ms-column-gap: 20px;
   -o-column-gap: 20px;
   column-gap: 20px;
-  
+
   -webkit-column-rule: thin gray solid;
   -moz-column-rule: thin gray solid;
   -ms-column-rule: thin gray solid;

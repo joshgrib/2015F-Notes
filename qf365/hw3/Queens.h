@@ -13,6 +13,7 @@ public:
 private:
     stack<int> queens;
     bool solve();
+    bool solveHelp(int);
     bool canPlace(int, int);
     int rows;
     int cols;
