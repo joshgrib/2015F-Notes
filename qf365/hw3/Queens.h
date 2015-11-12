@@ -2,21 +2,22 @@
 #pragma once //makes sure it's only included once
 #include <iostream>
 #include <string>
-#include <stack>
-#include <vector>
+#include <cstdlib>
 using namespace std;
+
+#define N 8
+
 
 class Queens{
 public:
     explicit Queens(int);
-    string printBoard();
+    string printBoard(int b[][N]);
 private:
-    stack<int> queens;
-    bool solve();
-    bool solveHelp(int);
-    bool canPlace(int, int);
+    bool solve(int b[][N]);
+    bool solveHelp(int b[][N], int);
+    bool canPlace(int b[][N], int, int);
     int rows;
     int cols;
-    vector<vector<int> > theBoard;
-    int placed;
+    //vector<vector<int> > theBoard;
+    int nCount;
 };
