@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <title>Practice with Forms</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" type="text/css" href="forms.css" />
+    <script type="text/javascript">
+      function summarize() {
+        //Get the right elements, turn them into a big string, and populate the summary with that
+        var str = "SID: " + document.getElementById("sid").value.trim() + "<br />" +//.trim() removes the whitespace
+            document.getElementById("firstname").value.trim() + " " +
+            document.getElementById("lastname").value.trim() + "<br />" +
+            document.getElementById("address1").value.trim() + "<br />";
+        var field = document.getElementById("address2").value;
+        if (field != null && field.trim() != "") {
+            str += field + "<br />";
+        }
+        str += document.getElementById("city").value.trim() + ", " +
+            document.getElementById("state").value.trim() + " " +
+            document.getElementById("zipcode").value.trim() + "<br />";
+        str += "Grade: ";
+        var radios = document.getElementById("grade_year");
+        for (var i=0; i<radios.length; i++){
+          if(checkboxes[i].checked) {
+            selected_devices.push(checkboxes[i].value);
+          }
+        }
+        str += selected_devices + "<br />";
+        str += "Date enrolled: " + document.getElementById("date_enrolled").value + "<br />";
+        str += "Favorite color: " + document.getElementById("favcolor").value + "<br />";
+        str += "Fun facts: " + document.getElementById("fun_facts").value.trim();
+      }
+    
+      function reset_form() {
+        document.getElementById("summary").innerHTML = str;
+        document.getElementById("summary_wrapper").style.display = "none";
+      }
+    </script>
+  </head>
+  <body>
+    <form name="form1" id="form1" autocomplete="off" method="get" onsubmit="summarize(); return false;">
+      <fieldset>
+        <legend>User Info</legend>
+        <label for="firstname" class="labelitem">First name:</label>
+        <input type="text" name="firstname" id="firstname" size="24" maxlength="32" placeholder="Enter first name." required pattern="[a-zA-Z][a-zA-Z'\- ]*" title="First name cannot be blank." /><br />
+        <label for="lastname" class="labelitem">Last name:</label>
+        <input type="text" name="lastname" id="lastname" size="24" maxlength="32" placeholder="Enter last name." required pattern="[a-zA-Z][a-zA-Z'\- ]*" title="Last name cannot be blank." /><br />
+        <div class="labelitem"><label for="address1">Address:</label></div>
+        <div class="inputitem">
+          <input type="text" name="address1" id="address1" size="24" maxlength="32" placeholder="Enter street address." required pattern=".+" title="Address cannot be blank." /><br />
+          <input type="text" name="address2" id="address2" size="24" maxlength="32" /><br />
+        </div><br />
+        <label for="city" class="labelitem">City:</label>
+        <input type="text" name="city" id="city" size="24" maxlength="32" placeholder="Enter city." required /><br />
+        <label for="state" class="labelitem">State:</label>
+        <select name="state" id="state" required>
+          <option value="" selected>&nbsp;</option>
+          <optgroup label="Mid-Atlantic">
+            <option value="Delaware">Delaware</option>
+            <option value="New Jersey">New Jersey</option>
+          </optgroup>
+          <optgroup label="New England">
+            <option value="Maine">Maine</option>
+            <option value="Vermont">Vermont</option>
+          </optgroup>
+        </select><br />
+        <label for="zipcode" class="labelitem">Zip code:</label>
+        <input type="text" name="zipcode" id="zipcode" size="24" maxlength="10" placeholder="Enter zip code." required pattern="\d{5}(\-\d{4})?" title="##### or #####-####" /><br />
+      </fieldset>
+      <fieldset>
+        <legend>Student Info</legend>
+        <label for="sid" class="labelitem">SID:</label>
+        <input type="text" name="sid" id="sid" size="24" maxlength="8" required /><br />
+        <label for="password" class="labelitem">Password:</label>
+        <div class="inputitem">
+          <input type="password" name="password" id="password" pattern=".{8,}" required /><br />
+          <p class="info">Password must be at least 8 characters.</p>
+        </div><br /><br />
+        <div class="labelitem">Year:</div>
+        <div class="inputitem">
+          <input type="radio" name="grade_year" id="freshman" value="Freshman" checked="checked" />
+          <label for="freshman">Freshman</label><br />
+          <input type="radio" name="grade_year" id="sophomore" value="Sophomore" />
+          <label for="sophomore">Sophomore</label><br />
+          <input type="radio" name="grade_year" id="junior" value="Junior" />
+          <label for="junior">Junior</label><br />
+          <input type="radio" name="grade_year" id="senior" value="Senior" />
+          <label for="senior">Senior</label>
+        </div><br /><br />
+        <div class="labelitem">Devices:</div>
+        <div class="inputitem">
+          <input type="checkbox" name="devices[]" id="laptop" value="laptop" />
+          <label for="laptop">Laptop</label><br />
+          <input type="checkbox" name="devices[]" id="desktop" value="desktop" />
+          <label for="desktop">Desktop</label><br />
+          <input type="checkbox" name="devices[]" id="tablet" value="tablet" />
+          <label for="tablet">Tablet</label><br />
+        </div><br />
+        <label for="date_enrolled" class="labelitem">Date enrolled:</label>
+        <input type="date" name="date_enrolled" id="date_enrolled" /><br />
+        <label for="favcolor" class="labelitem">Favorite color:</label>
+        <input type="color" name="favcolor" id="favcolor" /><br />
+        <label for="fun_facts" class="labelitem">Fun facts:</label>
+        <textarea name="fun_facts" id="fun_facts" rows="10" cols="20" placeholder="Hey, enter something fun about yourself."></textarea><br />
+      </fieldset>
+      <section id="reset_submit">
+        <input type="reset" value="Reset" onclick="reset_form()" />
+        <input type="submit" value="Submit" />
+      </section><br />
+      <div id="summary_wrapper">
+        <fieldset>
+          <legend>Summary</legend>
+          <section id="summary"></section>
+        </fieldset>
+      </div>
+    </form>
+  </body>
+</html>

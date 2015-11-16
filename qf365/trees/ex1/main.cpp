@@ -1,12 +1,9 @@
 #include <iostream>
 #include <string>
-#include "Queens.h"
-#include "Queens.cpp"
 using namespace std;
 
-#define N 6
-
 int main(){
-    Queens myQ(6);
+    int myArr[16];
+
     return 0;
 }

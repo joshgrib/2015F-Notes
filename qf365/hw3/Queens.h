@@ -5,7 +5,7 @@
 #include <cstdlib>
 using namespace std;
 
-#define N 8
+#define N 6
 
 
 class Queens{

@@ -5,7 +5,7 @@
 #include "Queens.h"
 using namespace std;
 
-#define N 8
+#define N 6
 
 Queens::Queens(int n){
     rows = n;
