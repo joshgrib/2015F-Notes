@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en-us">
+    <head>
+        <title>Playing with JavaScript</title>
+        <meta charset="utf-8" />
+        <script src="play.js"></script>
+    </head>
+    <body>
+        <form id="mainform" name="mainform" method="get" onsubmit="return false;">
+            <input type="text" size="24" maxlength="32" id="name" name="name" />
+            <input type="submit" value="Submit" />
+        </form>
+        <script type="text/javascript">
+            var val = prompt("How old are you?", 18);
+            if(!is_numeric(val)){
+                alert("Error: Age must be a number.");
+            } else {
+                alert(who_is_older(parseInt(val)));
+            }
+        </script>
+    </body>
+</html>
