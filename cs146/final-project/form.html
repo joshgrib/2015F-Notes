@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="description" content="Home page for Hands for Hire" />
+    <link type="text/css" rel="stylesheet" href="style.css" />
+    <script src="form.js"></script>
+    <title>Hands for Hire | Form</title>
+  </head>
+  <body>
+    <div id="wrapper">
+      <header>
+        <h1>Find the perfects hands for your job</h1>
+        <nav>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="form.html">Find hands</a></li>
+            <li><a href="about.html">About</a></li>
+          </ul>
+        </nav>
+      </header>
+      <section id="maincontent">
+        <article id="form_article">
+          <form id="form1" id="form1" autocomplete="off" method="get" onsubmit="getHelp(); return false;">
+            <fieldset>
+              <legend>Enter info below</legend>
+              <label for="firstname" class="labelitem">First name:</label>
+              <input type="text" name="firstname" id="firstname" size="24" maxlength="32" placeholder="Enter first name." required pattern="[a-zA-Z][a-zA-Z'\- ]*" title="First name cannot be blank." /><br />
+              <label for="lastname" class="labelitem">Last name:</label>
+              <input type="text" name="lastname" id="lastname" size="24" maxlength="32" placeholder="Enter last name." required pattern="[a-zA-Z][a-zA-Z'\- ]*" title="Last name cannot be blank." /><br />
+              <label for="city" class="labelitem">City:</label>
+              <input type="text" name="city" id="city" size="24" maxlength="32" placeholder="Enter city." required /><br />
+              <label for="state" class="labelitem">State:</label>
+              <select name="state" id="state" required>
+                <option value="" selected>&nbsp;</option>
+                <optgroup label="Mid-Atlantic">
+                  <option value="Delaware">Delaware</option>
+                  <option value="New Jersey">New Jersey</option>
+                </optgroup>
+                <optgroup label="New England">
+                  <option value="Maine">Maine</option>
+                  <option value="Vermont">Vermont</option>
+                </optgroup>
+              </select><br />
+              <section id="reset_submit">
+                <input type="reset" value="Reset" onclick="reset_form()" />
+                <input type="submit" value="Submit" />
+              </section><br />
+            </fieldset>
+          </form>
+        </article>
+        <article id="response_article">
+        </article>
+      </section>
+      <footer>
+        <p>&copy; Hands for Hire 2015</p>
+      </footer>
+    </div>
+  </body>
+</html>
