@@ -1,6 +1,5 @@
 import java.io.*;
 public class ErrFile{
-
     public static JPriorityQueue parseFile(String fileName){
         //String fileName = "problems.txt";
         String line = null;
@@ -12,7 +11,9 @@ public class ErrFile{
                 //System.out.println(line);
                 ErrorItem err = parseLine(line);
                 myPQ.insert(err);
-                System.out.println(err);
+                //System.out.println(myPQ);
+                //System.out.println(myPQ.size() + "\n");
+                //System.out.println(err);
             }
             bufferedReader.close();
         }
@@ -40,6 +41,10 @@ public class ErrFile{
     public static void main(String[] args) {
         JPriorityQueue myQ = new JPriorityQueue();
         myQ = parseFile("problems.txt");
-        System.out.println(myQ.toString());
+        System.out.println(myQ);
+        System.out.println("\n\n\n");
+        for(int i=0; i<29; i++){
+            System.out.println(myQ.remove().data());
+        }
     }
 }

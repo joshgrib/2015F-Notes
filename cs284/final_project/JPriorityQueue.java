@@ -12,27 +12,53 @@ public class JPriorityQueue{
     //methods
     public JPriorityQueue(){
         // Creates an empty list
+        System.out.println("Created new JPriorityQueue");
         least = highest;
         size = 0;
     }
     public boolean insert(ErrorItem errMsg){
+        System.out.println("Inserting " + errMsg);
+        //System.out.println("Priority is: " + errMsg.priority());
         JNode temp = new JNode(errMsg);
         if(size<=0){
             highest = temp;
             least = temp;
             size = 1;
+            System.out.println("First!");
             return true;
         }
         JNode current = highest;
-        while(current.next != null){
-            if(current.priority() > temp.priority()){
+        if(size == 1){
+            System.out.println("Second!");
+            if(temp.priority() > current.priority()){
                 temp.next = current;
                 current.prev = temp;
+                highest = temp;
+                System.out.println("New front!");
+                return true;
+            }
+            temp.prev = current;
+            current.next = temp;
+            least = temp;
+            size++;
+            return true;
+        }
+        while(current.next != null){
+            if( temp.priority() > current.priority()){//only > so newer things of the same priority go to the back of the same priority level
                 if(current == highest){
+                    temp.next = current;
+                    current.prev = temp;
                     highest = temp;
-                    //definitely test if this works - adding something with the highest priority so far
+                    size++;
+                    System.out.println("New front!");
+                    return true;
                 }
+                temp.next = current;
+                temp.prev = current.prev;
+                current.prev.next = temp;
+                current.prev = temp;
                 size++;
+                System.out.println("Inside somewhere!");
                 return true;
             }
             current = current.next;
@@ -43,7 +69,9 @@ public class JPriorityQueue{
         current.next = temp;
         least = temp;
         size++;
+        System.out.println("End!");
         return true;
+        //currently a problem where things inserted at the end are flipped or something 12-3-15 1:42 am. Going to bed
     }
     public JNode remove(){
         if(size == 0)
@@ -146,7 +174,7 @@ public class JPriorityQueue{
         return out;
     }
 
-    private class JNode{
+    public class JNode{
         //declare variables
         private ErrorItem data;
         private int priority;
