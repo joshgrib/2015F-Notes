@@ -24,4 +24,13 @@ public class ErrorItem{
     public int priority(){
         return this.priority;
     }
+
+    public String toString(){
+        String resp = "{" +
+        user + "|" +
+        host + "|" +
+        problem + "|" +
+        Integer.toString(priority) + "}";
+        return resp;
+    }
 }

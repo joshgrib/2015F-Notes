@@ -1,15 +1,18 @@
 import java.io.*;
 public class ErrFile{
 
-    public static void parseFile(String fileName){
+    public static JPriorityQueue parseFile(String fileName){
         //String fileName = "problems.txt";
         String line = null;
+        JPriorityQueue myPQ = new JPriorityQueue();
         try {
             FileReader fileReader = new FileReader(fileName);
             BufferedReader bufferedReader = new BufferedReader(fileReader);
             while((line = bufferedReader.readLine()) != null) {
                 //System.out.println(line);
-                parseLine(line);
+                ErrorItem err = parseLine(line);
+                myPQ.insert(err);
+                System.out.println(err);
             }
             bufferedReader.close();
         }
@@ -21,22 +24,22 @@ public class ErrFile{
         catch(IOException ex) {
             System.out.println("Error reading file '" + fileName + "'");
         }
+        return myPQ;
     }
 
-    public static void parseLine(String line){
+    private static ErrorItem parseLine(String line){
     String[] parts = line.split("\\|"); // String array, each element is text between dots
     String user = parts[0];
     String host = parts[1];
     String problem = parts[2];
     String priority = parts[3];
     ErrorItem errItem = new ErrorItem(user, host, problem, priority);
-    System.out.println("User:" + errItem.user);
-    System.out.println("Host:" + errItem.host);
-    System.out.println("Problem:" + errItem.problem);
-    System.out.println("Priority:" + errItem.priority);
-    System.out.println();
+    return errItem;
     }
+
     public static void main(String[] args) {
-        parseFile("problems.txt");
+        JPriorityQueue myQ = new JPriorityQueue();
+        myQ = parseFile("problems.txt");
+        System.out.println(myQ.toString());
     }
 }

@@ -3,7 +3,7 @@ import java.time.*;
 public class PQueue{
     PriorityQueue pq;
     public PQueue(){
-        this.pq =  = new PriorityQueue();
+
     }
     public add(ErrorItem errI){
         //add the error item to the priorty queue, sorting by priority level
