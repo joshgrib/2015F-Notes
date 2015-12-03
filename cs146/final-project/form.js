@@ -43,7 +43,7 @@ function getFormData() {
     str += "First name: " + document.getElementById("firstname").value.trim() + "<br />";
     str += "Last name: " + document.getElementById("lastname").value.trim() + "<br />";
     str += "City: " + document.getElementById("city").value.trim() + "<br />";
-    str += "State: " + document.getElementById("state").value.trim() + "<br />";
+    str += "State: " + document.getElementById("state").value + "<br />";
     str += "<hr /><b>Your perfect match is " +  workers["1"][0] + "</b><br />They are a " + workers["1"][1] + " and costs " + workers["1"][2] + ".<br />";
     str += "Description: " + workers["1"][3];
     document.getElementById("form_article").style.display = "none";

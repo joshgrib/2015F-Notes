@@ -4,76 +4,87 @@
     I pledge my honor I have abided by the Stevens Honor System.
 */
 /*From my hw2*/
+import java.util.Random;
 public class JPriorityQueue{
     //declare variables
     private JNode highest;
     private JNode least;
     public int size;
+    private boolean debug = false;
     //methods
     public JPriorityQueue(){
         // Creates an empty list
-        System.out.println("Created new JPriorityQueue");
+        if(debug){System.out.println("Created new JPriorityQueue");}
         least = highest;
         size = 0;
     }
     public boolean insert(ErrorItem errMsg){
-        System.out.println("Inserting " + errMsg);
+        /*
+            refactor to add methods for adding to the front and back, stop being lazy and refactor at the right time in the future
+        */
+        if(debug){System.out.println("Inserting " + errMsg);}
         //System.out.println("Priority is: " + errMsg.priority());
         JNode temp = new JNode(errMsg);
         if(size<=0){
-            highest = temp;
-            least = temp;
-            size = 1;
-            System.out.println("First!");
-            return true;
+            return insert_first_node(temp);
         }
         JNode current = highest;
+        /*
         if(size == 1){
             System.out.println("Second!");
-            if(temp.priority() > current.priority()){
-                temp.next = current;
-                current.prev = temp;
-                highest = temp;
-                System.out.println("New front!");
-                return true;
+            if(temp.priority() > highest.priority()){
+                return insert_front(temp);
             }
-            temp.prev = current;
-            current.next = temp;
-            least = temp;
-            size++;
-            return true;
+            return insert_back(temp);
         }
+        */
         while(current.next != null){
-            if( temp.priority() > current.priority()){//only > so newer things of the same priority go to the back of the same priority level
+            if( temp.priority() > current.priority()){//<= so newer things of the same priority go to the back of the same priority level
+                if(debug){System.out.println(Integer.toString(temp.priority()) + " > " + Integer.toString(current.priority()));}//this is an ugly line.
                 if(current == highest){
-                    temp.next = current;
-                    current.prev = temp;
-                    highest = temp;
-                    size++;
-                    System.out.println("New front!");
-                    return true;
+                    return insert_front(temp);
                 }
                 temp.next = current;
                 temp.prev = current.prev;
                 current.prev.next = temp;
                 current.prev = temp;
                 size++;
-                System.out.println("Inside somewhere!");
+                if(debug){System.out.println("Inside somewhere!");}
                 return true;
             }
+            //System.out.println("On to the next one");
             current = current.next;
         }
         //if it wasn't greater than anything in the list...
-        assert (current.data == temp.data);//just to make sure we are actually at the end;
-        temp.prev = current;
-        current.next = temp;
-        least = temp;
-        size++;
-        System.out.println("End!");
-        return true;
+        assert (current == least);//just to make sure we are actually at the end;
+        return insert_back(temp);
         //currently a problem where things inserted at the end are flipped or something 12-3-15 1:42 am. Going to bed
     }
+    private boolean insert_first_node(JNode n){
+        highest = n;
+        least = n;
+        size = 1;
+        if(debug){System.out.println("First!");}
+        return true;
+    }
+    private boolean insert_front(JNode n){
+        n.next = highest;
+        highest.prev = n;
+        highest = n;
+        size++;
+        if(debug){System.out.println("New front!");}
+        return true;
+    }
+    private boolean insert_back(JNode n){
+        n.prev = least;
+        least.next = n;
+        least = n;
+        size++;
+        if(debug){System.out.println("End!");}
+        return true;
+    }
     public JNode remove(){
+        //Only remove the highest, which should be the front of the queue. I'm really doing this more as a stack but whatever...
         if(size == 0)
             return null;
         JNode resp = highest;
@@ -84,75 +95,6 @@ public class JPriorityQueue{
         size--;
         return resp;
     }
-/*
-    private boolean add (int i, double d){
-        // Adds d at index i
-        if(i<0 || i>(size())){
-            return false;
-        }
-        JNode temp = new JNode(d);
-        JNode current = highest;
-        if(i==0){
-            addFirst(d);
-        }
-        else if(i==size){
-            addLast(d);
-        }
-        else{
-            for(int j=0; j<i; j++){
-                current = current.next;
-            }
-            temp.next = current;
-            temp.prev = current.prev;
-            current.prev.next = temp;
-            current.prev = temp;
-            size++; //addFirst and Last increment
-        }
-
-        return true;
-    }
-    private boolean addFirst (double d){
-        // Adds d as the new highest
-        if(size() == 0){
-            highest = new JNode(d);
-            least = highest;
-        }
-        else{
-            JNode temp = new JNode(d);
-            temp.next = highest;
-            highest.prev = temp;
-            highest = temp;
-        }
-        size++;
-        return true;
-    }
-    private boolean addLast (double d){
-        // Adds d as the new least
-        if(size() == 0){
-            highest = new JNode(d);
-            least = highest;
-        }
-        else{
-            JNode temp = new JNode(d);
-            least.next = temp;
-            temp.prev = least;
-            least = temp;
-        }
-        size++;
-        return true;
-    }
-    private double get (int i){
-        // Returns the number stored at index i
-        if(i<0 || i>(size()-1)){
-            throw new IllegalArgumentException("Index out of range");
-        }
-        JNode current = highest;
-        for(int j=0; j<i; j++){
-            current = current.next;
-        }
-        return current.data;
-    }
-*/
     public int size(){
         // Returns the list size
         return size;
@@ -203,9 +145,25 @@ public class JPriorityQueue{
     }
 
     public static void main(String[] args) {
-        System.out.println("---");
-        System.out.println("It runs!");
-        System.out.println("---");
+        //make some randompriority level errors, put them in the PQ, take them out and print
+        Random rand = new Random();
+        //int  n = rand.nextInt(5) + 1;
+        JPriorityQueue myQ = new JPriorityQueue();
+        for(int i=0; i<20; i++){
+            String num = Integer.toString(i);
+            if(i < 10){
+                num = "0" + num;
+            }
+            ErrorItem errItem = new ErrorItem(
+                "test" + num,
+                "host" + num,
+                "problem" + num,
+                Integer.toString(rand.nextInt(5) + 1));
+            myQ.insert(errItem);
+        }
+        while(myQ.size > 1){
+            System.out.println(myQ.remove().data());
+        }
         //maybe use assertEquals(x, y); for testing?
     }
 }

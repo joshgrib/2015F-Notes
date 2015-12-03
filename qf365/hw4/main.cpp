@@ -15,7 +15,7 @@ string djia[] = {"AAP","AXP","BA","CAT","CSCO","CVX","DD","DIS","GE","GS","HD","
 
 float std_dev(float, int);
 void printStats(string);
-void printData();
+void printData(string);
 void getData();
 void rmData();
 
@@ -27,6 +27,7 @@ int main(){
         printData(djia[i]);
         //cout << "Reading " << djia[i] << endl;
     }
+
     return 0;
 }
 

@@ -41,9 +41,9 @@ public class ErrFile{
     public static void main(String[] args) {
         JPriorityQueue myQ = new JPriorityQueue();
         myQ = parseFile("problems.txt");
-        System.out.println(myQ);
-        System.out.println("\n\n\n");
-        for(int i=0; i<29; i++){
+        //System.out.println(myQ);
+        //System.out.println("\n\n\n");
+        while(myQ.size > 1){
             System.out.println(myQ.remove().data());
         }
     }

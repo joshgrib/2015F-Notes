@@ -26,11 +26,11 @@ public class ErrorItem{
     }
 
     public String toString(){
-        String resp = "{" +
-        user + "|" +
-        host + "|" +
-        problem + "|" +
-        Integer.toString(priority) + "}";
+        String resp = "<" +
+        user + "~" +
+        host + "~" +
+        problem + "~" +
+        Integer.toString(priority) + ">";
         return resp;
     }
 }
