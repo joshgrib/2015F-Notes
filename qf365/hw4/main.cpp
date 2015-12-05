@@ -22,7 +22,6 @@ using namespace boost::accumulators;
 
 string djia[] = {"AAP","AXP","BA","CAT","CSCO","CVX","DD","DIS","GE","GS","HD","IBM","INTC","JNJ","JPM","KO","MCD","MMM","MRK","MSFT","NKE","PFE","PG","TRV","UNH","UTX","V","VZ","WMT","XOM"};
 
-float std_dev(float, int);
 bool printStats(string, string);
 void printData(string);
 void getData();
@@ -67,14 +66,20 @@ void getAveMoments(string inFileName, string outFileName){
 }
 
 void run(){
-    //system("mkdir ./data");
     cout << "Running..." << endl;
-    //printStats("AAP");
+    //cout << "Clearing data" << endl;
+    //rmData();
+    //system("mkdir data");
+    //cout << "Getting data" << endl;
+    //getData();
+    //cout << "Waiting..." << endl;
+    //sleep(1000 * 10);
+    //cout << "Done waiting!" << endl;
     ofstream statsFile;
     statsFile.open("moments.csv");
     statsFile << "ticker, expRet, stdDev, skew, kurt\n";
     statsFile.close();
-    cout << "Getting stocks and writing stats to 'moments.csv'..." << endl;
+    cout << "Computing stats and writing to 'moments.csv'..." << endl;
     for(int i=0; i<30; i++){
         printStats(djia[i], "moments.csv");
         //cout << "Reading " << djia[i] << endl;
@@ -82,17 +87,6 @@ void run(){
     cout << "Getting the averages..." << endl;
     getAveMoments("moments.csv", "aveMoments.csv");
     cout << "Done!" << endl;
-}
-
-float std_dev(float data[], int n){
-    /*From :http://www.programiz.com/cpp-programming/examples/standard-deviation*/
-    float mean = 0.0, sum_dev = 0.0;
-    for(int i=0; i<n; ++i)
-        mean += data[i];
-    mean = mean/n;
-    for(int j=0; j<n; ++j)
-        sum_dev += (data[j]-mean) * (data[j] * mean);
-    return sqrt(sum_dev/n);
 }
 
 bool printStats(string ticker, string outFileName){
@@ -130,7 +124,7 @@ bool printStats(string ticker, string outFileName){
         //cout << "Skewness: " << skewness(acc) << endl;
         ofstream mFile;
         mFile.open("moments.csv", fstream::app);
-        mFile << ticker << "," << mean(acc) << "," << variance(acc) << "," << kurtosis(acc) << "," << skewness(acc) << endl;
+        mFile << ticker << "," << mean(acc) << "," << sqrt(variance(acc)) << "," << skewness(acc) << "," << kurtosis(acc) << endl;
         mFile.close();
     }
     readObject.close();
@@ -173,11 +167,11 @@ void printData(string ticker){
 }
 
 void getData(){
-    cout << "Putting data in csv files..." << endl;
+    //cout << "Putting data in csv files..." << endl;
     system("python run.py");
-    cout << "Done." << endl;
+    //cout << "Done." << endl;
 }
 
 void rmData(){
-    system("rm -r data/*");
+    system("rm -r data");
 }

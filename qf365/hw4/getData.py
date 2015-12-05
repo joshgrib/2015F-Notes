@@ -16,5 +16,5 @@ e = datetime.date(2014,12,31)
 
 for ticker in djia:
     u =  make_url(ticker,s,e)
-    file_location = './data/' + ticker + '.csv'
+    file_location = 'data/' + ticker + '.csv'
     urllib.urlretrieve(u, file_location)
