@@ -1,0 +1,99 @@
+#lang eopl
+
+; lab11 assignment 2015 
+
+; Objectives of lab:  
+; Familiarity with some number-theoretic algorithms, and
+; representation of numbers.
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+; Step 0 
+; The first part of this lab deals with prime numbers.
+; Have a look at function primes, which may seem familiar.
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(define (filter lst pred?) 
+  (cond [(null? lst) '()]
+        [(pred? (car lst)) (cons (car lst) (filter (cdr lst) pred?))]
+        [else (filter (cdr lst) pred?)]))
+
+(define (add1 i) (+ i 1))
+
+
+(define (make-lst n v)
+  (cond
+    ((= 1 n) '())
+    (else (cons v (make-lst (- n 1) (add1 v))))))
+
+(define (sieve-help lst vals)
+  (cond
+    ((null? vals) lst)
+    (else (sieve-help(filter lst (lambda (x) (or (not (= 0 (remainder x (car vals)))) (= x (car vals))))) (cdr vals)))
+ ))
+
+(define (primes n)
+  ; Assume n >= 2.  Return the list of prime numbers at most n.
+  (sieve-help (make-lst n 2) (make-lst n 2)))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+; Step 1
+; Implement the following functions, without using any built-in functions
+; other than basic arithmetic (including quotient, modulo, sqrt, and floor).
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(define (primefactors n)
+  ; Assume n>=1.  Return the list of its prime factors
+  ; in ascending order.
+  "to do")
+
+; Hints: The largest prime factor of n is at most (floor (sqrt n)).
+; Use the 'primes' function from Step 1.
+
+(define test-primefactors
+  (and (equal? (primefactors 4) '(2 2))
+       (equal? (primefactors 60) '(2 2 3 5))))
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(define (base2expand n)
+  ; Assume n>=0.  Return its base 2 expansion, as a list starting with the
+  ; low order bit.
+  "to do") 
+
+(define test-base2expand
+  (equal? (base2expand 6) '(0 1 1)))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(define (base2val bs)
+  ; Assume bs is a list of 1s and 0s, representing a natural number
+  ; in binary, low order bit first.  Return the number.
+  "to do")
+
+(define test-base2val
+  (equal? (base2val '(0 1 1)) 6))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+; Step 2
+; Implement the following functions, gcd and modularexp. 
+; They are usually presented as loops, so use tail recursion.
+; For gcd you won't need a helper function.
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(define (gcd n m)
+  ; Assume n and m are positive integers.  Return their gcd using Euclid's algorithm.
+  ; (Either the subtraction version or the mod version, it's up to you.)
+  "to do")
+
+(define test-gcd
+  (equal? (gcd 252 198) 18))
+
+(define (modularexp b n m)
+  ; Assume b is an integer and n,m are positive integers.
+  ; Return b to the nth power modulo m.  
+  ; Hint: see lecture 21, and Algorithm 5, p254 of Rosen 7th ed.
+  "to do")
+
+(define test-modularexp
+  (equal? (modularexp 3 644 645) 36))
+
+
+

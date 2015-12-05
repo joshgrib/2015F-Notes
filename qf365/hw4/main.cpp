@@ -4,31 +4,84 @@
 #include <cstdlib> //for system()
 #include <fstream>
 #include <math.h>
-
 #include <algorithm>
 #include <numeric>
 #include <vector>
 
+#include <boost/math/distributions.hpp>
+#include <boost/accumulators/accumulators.hpp>
+#include <boost/accumulators/statistics/stats.hpp>
+#include <boost/accumulators/statistics/mean.hpp>
+#include <boost/accumulators/statistics/variance.hpp>
+#include <boost/accumulators/statistics/kurtosis.hpp>
+#include <boost/accumulators/statistics/moment.hpp>
+#include <boost/accumulators/statistics/skewness.hpp>
+
 using namespace std;
+using namespace boost::accumulators;
 
 string djia[] = {"AAP","AXP","BA","CAT","CSCO","CVX","DD","DIS","GE","GS","HD","IBM","INTC","JNJ","JPM","KO","MCD","MMM","MRK","MSFT","NKE","PFE","PG","TRV","UNH","UTX","V","VZ","WMT","XOM"};
 
 float std_dev(float, int);
-void printStats(string);
+bool printStats(string, string);
 void printData(string);
 void getData();
 void rmData();
+void run();
+void getAveMoments(string, string);
 
 int main(){
+    run();
+    return 0;
+}
+
+void getAveMoments(string inFileName, string outFileName){
+    ifstream readObject;
+    string line;
+    readObject.open("moments.csv");
+    accumulator_set<double, stats<tag::mean> > acc_expRet;
+    accumulator_set<double, stats<tag::mean> > acc_stdDev;
+    accumulator_set<double, stats<tag::mean> > acc_skew;
+    accumulator_set<double, stats<tag::mean> > acc_kurt;
+    string ticker, expRet, stdDev, skew, kurt;
+    while( getline(readObject, ticker, ',') ){
+        //ticker, expRet, stdDev, skew, kurt
+        getline(readObject, expRet, ',');
+        getline(readObject, stdDev, ',');
+        getline(readObject, skew, ',');
+        getline(readObject, kurt);
+        float expRet_float = ::atof(expRet.c_str());
+        float stdDev_float = ::atof(stdDev.c_str());
+        float skew_float = ::atof(skew.c_str());
+        float kurt_float = ::atof(kurt.c_str());
+        acc_expRet(expRet_float);
+        acc_stdDev(stdDev_float);
+        acc_skew(skew_float);
+        acc_kurt(kurt_float);
+    }
+    ofstream writeObject;
+    writeObject.open("aveMoments.csv");
+    writeObject << "expRet, stdDev, skew, kurt\n";
+    writeObject << mean(acc_expRet) << "," << mean(acc_stdDev) << "," << mean(acc_skew) << "," << mean(acc_kurt) << endl;
+    writeObject.close();
+}
+
+void run(){
     //system("mkdir ./data");
     cout << "Running..." << endl;
     //printStats("AAP");
+    ofstream statsFile;
+    statsFile.open("moments.csv");
+    statsFile << "ticker, expRet, stdDev, skew, kurt\n";
+    statsFile.close();
+    cout << "Getting stocks and writing stats to 'moments.csv'..." << endl;
     for(int i=0; i<30; i++){
-        printData(djia[i]);
+        printStats(djia[i], "moments.csv");
         //cout << "Reading " << djia[i] << endl;
     }
-
-    return 0;
+    cout << "Getting the averages..." << endl;
+    getAveMoments("moments.csv", "aveMoments.csv");
+    cout << "Done!" << endl;
 }
 
 float std_dev(float data[], int n){
@@ -42,25 +95,20 @@ float std_dev(float data[], int n){
     return sqrt(sum_dev/n);
 }
 
-float getKurt(float data[], int n){
-    //
-}
-
-void printStats(string ticker){
+bool printStats(string ticker, string outFileName){
     ifstream readObject;
     string line;
     string fPath = "data/" + ticker + ".csv";
     readObject.open(fPath.c_str());
-    float closes[1259];
+    //float closes[1259];
     int count = 0;
-    /*Stuff from online*/
-    int n, i, x; double avg, var = 0, skewness = 0, S, k = 0;
-    vector<int> v;
-    /*End of online stuff*/
+    //string writeFile = "ticker, expRet, stdDev, skew, kurt";
     if(readObject.fail()){
         cout << "Could not open file: \"" << ticker << ".csv\"" << endl;
+        return false;
     }else{
         string date,open, high, low, close, volume, adjClose;
+        accumulator_set<double, stats<tag::mean, tag::variance, tag::kurtosis, tag::skewness> > acc;
         while( getline(readObject, date, ',') ){
             //Date,Open,High,Low,Close,Volume,Adj Close
             getline(readObject, open, ',');
@@ -69,59 +117,24 @@ void printStats(string ticker){
             getline(readObject, close, ',');
             getline(readObject, volume, ',') ;
             getline(readObject, adjClose) ;
-            closes[count] = ::atof(close.c_str());
+            float data = ::atof(close.c_str());
+            acc(data);
             count++;
         }
+        //cout << "----------------" << endl;
+        //cout << ticker << endl;
+        //variance and mean - which is maybe exp ret - are off
+        //cout << "Mean: " << mean(acc) << endl;
+        //cout << "Variance: " << variance(acc) << endl;
+        //cout << "Kurtosis: " << kurtosis(acc) << endl;
+        //cout << "Skewness: " << skewness(acc) << endl;
+        ofstream mFile;
+        mFile.open("moments.csv", fstream::app);
+        mFile << ticker << "," << mean(acc) << "," << variance(acc) << "," << kurtosis(acc) << "," << skewness(acc) << endl;
+        mFile.close();
     }
     readObject.close();
-
-    /*Stuff found online*/
-    for (i = 0; i < 1259; i++)
-    {
-        x = closes[i];
-        v.push_back(x);
-    }
-    sort(v.begin(), v.end());
-    for (i = 0; i < n; i++)
-        cout << v[i] << " ";
-    int sum = accumulate(v.begin(), v.end(), 0);
-    avg = (double)sum/n;
-    //cout << "\nMean = " << avg << endl;
-    vector<int>::iterator it;
-    if (n % 2 != 0)
-    {
-       x = (n+1)/2;
-       it = v.begin() + x;
-       nth_element(v.begin(), it, v.end());
-       //cout << "Median = " << *(v.begin() + x -1) << endl;
-    }
-    else
-    {
-        float m;
-        x = (n)/2 - 3;
-        it = v.begin() + x;
-        m = (*(v.begin()+ x - 1) + (*(v.begin() + x - 2 )))/2;
-        //cout << "Median = " << m << endl;
-    }
-    for (i = 0; i < n; i++)
-    {
-        var += (v[i] - avg)*(v[i] - avg);
-    }
-    var = (double)(var)/(n - 1);
-    //cout << "Variance = " << var << endl;
-    S = (double)sqrt(var);
-    for (i = 0; i < n; i++)
-        skewness += (v[i] - avg)*(v[i] - avg)*(v[i] - avg);
-    skewness = skewness/(n * S * S * S);
-    cout << "Skewness = " << skewness << endl;
-    for (i = 0; i < n; i++)
-        k += (v[i] - avg)*(v[i] - avg)*(v[i] - avg)*(v[i] - avg);
-    k = k/(n*S*S*S*S);
-    k -= 3;
-    cout << "Kurtosis = " << k << endl;
-    /*End of online stuff*/
-    int close_size = 1259 /*sizeof(closes) / sizeof(closes[0])*/;
-    cout << "Std dev of " << ticker << ": " << std_dev(closes, close_size) << endl;
+    return true;
 }
 
 void printData(string ticker){
