@@ -1,4 +1,4 @@
-/**A hash table to store problems that have been handled
+/**A hash table to store problems that have been handled. Hash table uses open addressing and linear probing
  * CS284 - Data Structures
  * Final Project
  * I pledge my honor I have abided by the Stevens Honor System.
@@ -7,18 +7,15 @@
  *
  * Sources used: Textbook implementation of a Hash Table, pg 384
  */
+import java.util.*;
 public class JHashTable{
+    public Hashtable hTable;
     /**Constructor*/
     public JHashTable(){
-        if(debug){System.out.println("Created new JPriorityQueue");}
-        least = highest;
-        size = 0;
     }
-    /**Override of toString() method
-     * @return      String "JHashTable"
-     */
-    public String toString(){
-        System.out.println("JHashTable");
+    public V put(K key, V value){
+    }
+    public V get(Object key){
     }
     /**Main method - used for testing*/
     public static void main(String[] args) {
