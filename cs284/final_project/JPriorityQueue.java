@@ -19,9 +19,6 @@ public class JPriorityQueue{
         size = 0;
     }
     public boolean insert(ErrorItem errMsg){
-        /*
-            refactor to add methods for adding to the front and back, stop being lazy and refactor at the right time in the future
-        */
         if(debug){System.out.println("Inserting " + errMsg);}
         //System.out.println("Priority is: " + errMsg.priority());
         JNode temp = new JNode(errMsg);
@@ -29,15 +26,6 @@ public class JPriorityQueue{
             return insert_first_node(temp);
         }
         JNode current = highest;
-        /*
-        if(size == 1){
-            System.out.println("Second!");
-            if(temp.priority() > highest.priority()){
-                return insert_front(temp);
-            }
-            return insert_back(temp);
-        }
-        */
         while(current.next != null){
             if( temp.priority() > current.priority()){//<= so newer things of the same priority go to the back of the same priority level
                 if(debug){System.out.println(Integer.toString(temp.priority()) + " > " + Integer.toString(current.priority()));}//this is an ugly line.

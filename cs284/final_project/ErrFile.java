@@ -8,12 +8,8 @@ public class ErrFile{
             FileReader fileReader = new FileReader(fileName);
             BufferedReader bufferedReader = new BufferedReader(fileReader);
             while((line = bufferedReader.readLine()) != null) {
-                //System.out.println(line);
                 ErrorItem err = parseLine(line);
                 myPQ.insert(err);
-                //System.out.println(myPQ);
-                //System.out.println(myPQ.size() + "\n");
-                //System.out.println(err);
             }
             bufferedReader.close();
         }
@@ -41,8 +37,6 @@ public class ErrFile{
     public static void main(String[] args) {
         JPriorityQueue myQ = new JPriorityQueue();
         myQ = parseFile("problems.txt");
-        //System.out.println(myQ);
-        //System.out.println("\n\n\n");
         while(myQ.size > 1){
             System.out.println(myQ.remove().data());
         }

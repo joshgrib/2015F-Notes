@@ -109,8 +109,8 @@ bool printStats(string ticker, string outFileName){
             getline(readObject, high, ',');
             getline(readObject, low, ',');
             getline(readObject, close, ',');
-            getline(readObject, volume, ',') ;
-            getline(readObject, adjClose) ;
+            getline(readObject, volume, ',');
+            getline(readObject, adjClose);
             float data = ::atof(close.c_str());
             acc(data);
             count++;
