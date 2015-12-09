@@ -11,6 +11,7 @@ int main(){
     cout << bsearch(sortedArr, 18, 0, 15) << endl;
     return 0;
 }
+
 int bsearch(int A[], int key, int min, int max){
     if (max < min){
         cout << "Not found." << endl;

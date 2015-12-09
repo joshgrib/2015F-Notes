@@ -471,7 +471,7 @@ public class hw3{
     }
 
 
-    /**Main method - used for testing*/
+    /*Main method - used for testing*/
     public static void main(String[] args) {
         System.out.println("---");
 

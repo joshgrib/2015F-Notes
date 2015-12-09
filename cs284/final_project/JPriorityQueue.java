@@ -1,23 +1,40 @@
-/*
-    Josh Gribbon
-    CS284 - HW2
-    I pledge my honor I have abided by the Stevens Honor System.
+/**A priority queue of ErrorItems
+ * CS284 - Data Structures
+ * Final Project
+ * I pledge my honor I have abided by the Stevens Honor System.
+ *
+ * @author Josh Gribbon
+ *
+ * Sources used: Linked list from HW2
+ */
+
+/*Notes
+
+Use the second JNode constructor, might fix problems with inserting the first few
+
 */
-/*From my hw2*/
 import java.util.Random;
 public class JPriorityQueue{
-    //declare variables
+    /**The highest priority item in the queue*/
     private JNode highest;
+    /**The lowest priority item in the queue*/
     private JNode least;
+    /**The sizo of the queue*/
     public int size;
+    /**If I am debugging or not - toggles some printouts*/
     private boolean debug = false;
-    //methods
+
+    /**Constructor*/
     public JPriorityQueue(){
         // Creates an empty list
         if(debug){System.out.println("Created new JPriorityQueue");}
         least = highest;
         size = 0;
     }
+
+    /**Method to insert an ErrorItem
+     * @param errMsg        The ErrorItem to insert
+     */
     public boolean insert(ErrorItem errMsg){
         if(debug){System.out.println("Inserting " + errMsg);}
         //System.out.println("Priority is: " + errMsg.priority());
@@ -48,6 +65,11 @@ public class JPriorityQueue{
         return insert_back(temp);
         //currently a problem where things inserted at the end are flipped or something 12-3-15 1:42 am. Going to bed
     }
+
+    /**Method to insert the first JNode in the queue
+     * @param n         The JNode to insert, as the first node in the list
+     * @return          Boolean if the insertion was successful
+     */
     private boolean insert_first_node(JNode n){
         highest = n;
         least = n;
@@ -55,6 +77,11 @@ public class JPriorityQueue{
         if(debug){System.out.println("First!");}
         return true;
     }
+
+    /**Method to insert a JNode in the front of the queue
+     * @param n         The JNode to insert to the front of the queue
+     * @return          Boolean if the insertion was successful
+     */
     private boolean insert_front(JNode n){
         n.next = highest;
         highest.prev = n;
@@ -63,6 +90,11 @@ public class JPriorityQueue{
         if(debug){System.out.println("New front!");}
         return true;
     }
+
+    /**Method to insert a JNode in the back of the queue
+     * @param n         The JNode to insert to the back of the queue
+     * @return          Boolean if the insertion was successful
+     */
     private boolean insert_back(JNode n){
         n.prev = least;
         least.next = n;
@@ -71,8 +103,11 @@ public class JPriorityQueue{
         if(debug){System.out.println("End!");}
         return true;
     }
+
+    /**Method to remove a JNode from the queue
+     * @return          The JNode with the highest priority in the queue, or null if the queue is empty
+     */
     public JNode remove(){
-        //Only remove the highest, which should be the front of the queue. I'm really doing this more as a stack but whatever...
         if(size == 0)
             return null;
         JNode resp = highest;
@@ -83,10 +118,17 @@ public class JPriorityQueue{
         size--;
         return resp;
     }
+
+    /**Size getter
+     * @return          The size of the queue
+     */
     public int size(){
-        // Returns the list size
         return size;
     }
+
+    /**Override of toString() method
+     * @return      String in the form of "[ErrItem, ErrItem, ErrItem]"
+     */
     public String toString(){
         // returns a String with all the elements in the list separated by commas
         JNode current = highest;
@@ -104,34 +146,7 @@ public class JPriorityQueue{
         return out;
     }
 
-    public class JNode{
-        //declare variables
-        private ErrorItem data;
-        private int priority;
-        private JNode next;
-        private JNode prev;
-        //methods
-        private JNode (ErrorItem errMsg){
-            // Creates a node holding d
-            data = errMsg;
-            next = null;
-            prev = null;
-            priority = errMsg.priority();
-        }
-        private JNode(ErrorItem errMsg, JNode n,JNode pr){
-            //Creates a node holding d, with n as next, pr as prev and pr2 as prev2
-            data = errMsg;
-            next = n;
-            prev = pr;
-        }
-        public ErrorItem data(){
-            return this.data;
-        }
-        public int priority(){
-            return this.priority;
-        }
-    }
-
+    /**Main method - used fro testing*/
     public static void main(String[] args) {
         //make some randompriority level errors, put them in the PQ, take them out and print
         Random rand = new Random();
