@@ -1,4 +1,4 @@
-/**A hash table to store problems that have been handled. Hash table uses open addressing and linear probing
+/**A hash table to store problems that have been handled
  * CS284 - Data Structures
  * Final Project
  * I pledge my honor I have abided by the Stevens Honor System.
@@ -9,16 +9,22 @@
  */
 import java.util.Random;
 public class JHashTable{
-
+    /**The initial size of the table*/
     private final static int TSize = 128;
+    /**The table to start*/
     JHashTableEntry[] table;
 
+    /**Constructor*/
     JHashTable(){
         table = new JHashTableEntry[TSize];
         for (int i = 0; i < TSize; i++)
             table[i] = null;
     }
 
+    /**Get the data at a key
+     * @param k      The key to search for
+     * @return      The data or null if not found
+     */
     public ErrorItem get(int k){
         int hash = (k % TSize);
         int iHash = -1;
@@ -35,6 +41,10 @@ public class JHashTable{
             return table[hash].data();
     }
 
+    /**Hash function
+     * @param name          The string to hash
+     * @return              The hash number
+     */
     public int getHash(String name){
         int name_length = name.length();
         int hash_num = 0;
@@ -44,10 +54,17 @@ public class JHashTable{
         return hash_num;
     }
 
+    /**Wrapper for put(int, ErrorItem) to enter without a key
+     * @param d         The data to put in the table
+     */
     public void put(ErrorItem d){
         put( getHash(d.user()), d);
     }
 
+    /**Table entry
+     * @param k         The key
+     * @param d          The data
+     */
     public void put(int k, ErrorItem d){
         int hash = (k % TSize);
         int iHash = -1;
@@ -72,6 +89,9 @@ public class JHashTable{
                 table[hash] = new JHashTableEntry(k, d);
     }
 
+    /**Remove the data for a key
+     * @param k         The key
+     */
     public void remove(int k){
         int hash = (k % TSize);
         int iHash = -1;
