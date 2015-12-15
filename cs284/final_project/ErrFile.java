@@ -9,11 +9,17 @@
  */
 import java.io.*;
 public class ErrFile{
+    String fileName;
+
+    public ErrFile(String file){
+        this.fileName = file;
+    }
+
     /**Method to parse the file and put ErrorItems in a JPriorityQueue
      * @param fileName          The name of the file to parse
      * @return                  A JPriorityQueue of "ErrorItem"s
      */
-    public static JPriorityQueue parseFile(String fileName){
+    public JPriorityQueue parseFile(){
         //String fileName = "problems.txt";
         String line = null;
         JPriorityQueue myPQ = new JPriorityQueue();
@@ -21,18 +27,23 @@ public class ErrFile{
             FileReader fileReader = new FileReader(fileName);
             BufferedReader bufferedReader = new BufferedReader(fileReader);
             while((line = bufferedReader.readLine()) != null) {
-                ErrorItem err = parseLine(line);
-                myPQ.insert(err);
+                if(line == "break"){
+                    System.out.println("Reached break");
+                }else{
+                    ErrorItem err = parseLine(line);
+                    myPQ.insert(err);
+                }
             }
             bufferedReader.close();
         }
         catch(FileNotFoundException ex) {
-            System.out.println(
-                "Unable to open file '" +
-                fileName + "'");
+            System.out.println("Unable to open file '" + fileName + "'");
         }
         catch(IOException ex) {
             System.out.println("Error reading file '" + fileName + "'");
+        }
+        catch(ArrayIndexOutOfBoundsException ex){
+            System.out.println("Array index out of bounds");
         }
         return myPQ;
     }
@@ -53,7 +64,8 @@ public class ErrFile{
     /**Main method - used for testing*/
     public static void main(String[] args) {
         JPriorityQueue myQ = new JPriorityQueue();
-        myQ = parseFile("problems.txt");
+        ErrFile efile = new ErrFile("messages.txt");
+        myQ = efile.parseFile();
         while(myQ.size > 1){
             System.out.println(myQ.remove().data());
         }
