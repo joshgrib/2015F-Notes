@@ -26,13 +26,16 @@ public class ErrFile{
         try {
             FileReader fileReader = new FileReader(fileName);
             BufferedReader bufferedReader = new BufferedReader(fileReader);
-            while((line = bufferedReader.readLine()) != null) {
-                if(line == "break"){
-                    System.out.println("Reached break");
-                }else{
+            line = bufferedReader.readLine();
+            while(line != null) {
+                try{
                     ErrorItem err = parseLine(line);
                     myPQ.insert(err);
                 }
+                catch(ArrayIndexOutOfBoundsException ex){
+                    System.out.println("Reached break");
+                }
+                line = bufferedReader.readLine();
             }
             bufferedReader.close();
         }

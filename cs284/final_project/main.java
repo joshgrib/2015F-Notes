@@ -1,7 +1,12 @@
-import java.util.*;
-import java.time.*;
-public class hw3{
+public class main{
     public static void main(String[] args) {
-        System.out.println("Hello Josh");
+        JPriorityQueue myPQ = new JPriorityQueue();
+        ErrFile efile = new ErrFile("messages.txt");
+        JHashTable myHT = new JHashTable();
+        JArchive myArc = new JArchive();
+        myPQ = efile.parseFile();
+
+        JProcess processor = new JProcess(myPQ, myHT, myArc);
+        processor.process();
     }
 }

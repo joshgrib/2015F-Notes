@@ -8,18 +8,18 @@
  * Sources used: Hash table example at http://www.algolist.net/
  */
 import java.util.Random;
-public class JHashTable {
+public class JHashTable{
 
     private final static int TSize = 128;
     JHashTableEntry[] table;
 
-    JHashTable() {
+    JHashTable(){
         table = new JHashTableEntry[TSize];
         for (int i = 0; i < TSize; i++)
             table[i] = null;
     }
 
-    public ErrorItem get(int k) {
+    public ErrorItem get(int k){
         int hash = (k % TSize);
         int iHash = -1;
         while (hash != iHash
@@ -48,7 +48,7 @@ public class JHashTable {
         put( getHash(d.user()), d);
     }
 
-    public void put(int k, ErrorItem d) {
+    public void put(int k, ErrorItem d){
         int hash = (k % TSize);
         int iHash = -1;
         int iOfDelEntry = -1;
@@ -72,7 +72,7 @@ public class JHashTable {
                 table[hash] = new JHashTableEntry(k, d);
     }
 
-    public void remove(int k) {
+    public void remove(int k){
         int hash = (k % TSize);
         int iHash = -1;
         while (hash != iHash
@@ -87,7 +87,7 @@ public class JHashTable {
     }
 
     /**Main method - used for testing*/
-    public static void main(String[] args) {
+    public static void main(String[] args){
         //make some randompriority level errors, put them in the PQ, take them out and print
         Random rand = new Random();
         //int  n = rand.nextInt(5) + 1;
