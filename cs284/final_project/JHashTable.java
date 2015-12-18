@@ -109,6 +109,8 @@ public class JHashTable{
     /**Main method - used for testing*/
     public static void main(String[] args){
         //make some randompriority level errors, put them in the PQ, take them out and print
+        JHashTable test = new JHashTable();
+        System.out.println(test.getHash("Josh"));
         Random rand = new Random();
         //int  n = rand.nextInt(5) + 1;
         JPriorityQueue myQ = new JPriorityQueue();
